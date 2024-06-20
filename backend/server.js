@@ -10,10 +10,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-/* app.get("/", (req, res) => {
-  res.send("¡Buenas team! Probando");
-}); */
-
 app.use('/api', productsRouter);
 app.use('/api', categoriesRouter);
 app.use('/api', ordersRouter);
