@@ -1,4 +1,5 @@
 const Users = require("../config/dbConfig");
+const bcrypt = require("bcrypt");
 
 /*Resumen del archivo, por si se hace largo */
 
@@ -26,8 +27,8 @@ const getAllUsers = async (req, res) => {
       if (result.length > 0) {
         //armo una response con data del user menos el pass, podría no ir el email tambien
         let myResponse = [];
-        result.map((user) => {
-          myResponse = {
+        result.map((user, index) => {
+          myResponse[index] = {
             username: user.name,
             id: user.id_user,
             email: user.email,
@@ -90,6 +91,7 @@ const getUserById = (req, res) => {
       .send({ message: "Algo salió mal en el servidor", error: error });
   }
 };
+//#region
 
 // // completo getUserByAnyValue y dejo comentado.
 // const getUserByAnyValue = (req, res) => {
@@ -142,7 +144,7 @@ const getUserById = (req, res) => {
 //     res.status(200).send({ message: "Usuarios encontrados", data: results });
 //   });
 // };
-
+//#endregion
 //post
 const registerUser = (req, res) => {
   try {
@@ -163,6 +165,13 @@ const registerUser = (req, res) => {
       });
     }
 
+    //validar que el email tenga la estructura de un email ej: abc@dominio.com
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!email.match(emailRegex)) {
+     return res.status(500).send({ message: "Eso no parece un email" });
+    }
+
     // Verificar si el usuario ya existe por su email
     //si se intenta hacer el insert sin verificar la base tira un error ya que el email es unique, pero es
     //mejor controlarlo nosotros samu
@@ -181,30 +190,34 @@ const registerUser = (req, res) => {
 
       //si no existe el email en la base seguimos....
 
-      /*
+      //logica para encryptar el password antes de salvarlo en la base
 
-                logica para encryptar el password antes de salvarlo en la base
-
-
-    */
-      //arma el objeto, es lo mismo que {name:name,email:email....}
-      const newUser = { name, email, password };
-
-      const sql = "INSERT INTO Users SET ?";
-
-      Users.query(sql, newUser, (error, results) => {
-        if (error) {
-          console.error("Error al crear usuario:", error);
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error(err);
           return res
             .status(500)
-            .send({ message: "Error al crear usuario", error: error });
+            .send({ message: "Error al encriptar la pass", error: error });
         }
+        //arma el objeto, es lo mismo que {name:name,email:email....}
+        const newUser = { name, email, password: hashedPassword };
 
-        // console.log("Usuario creado correctamente:", results.insertId);
-        //el result no devuelve la info que inserto, pero si el id del user
-        res.status(201).json({
-          message: "Usuario creado exitosamente",
-          userId: results.insertId,
+        const sql = "INSERT INTO Users SET ?";
+
+        Users.query(sql, newUser, (error, results) => {
+          if (error) {
+            console.error("Error al crear usuario:", error);
+            return res
+              .status(500)
+              .send({ message: "Error al crear usuario", error: error });
+          }
+
+          // console.log("Usuario creado correctamente:", results.insertId);
+          //el result no devuelve la info que inserto, pero si el id del user
+          res.status(201).json({
+            message: "Usuario creado exitosamente",
+            userId: results.insertId,
+          });
         });
       });
     });
