@@ -169,7 +169,7 @@ const registerUser = (req, res) => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (!email.match(emailRegex)) {
-      res.status(500).send({ message: "Eso no parece un email" });
+     return res.status(500).send({ message: "Eso no parece un email" });
     }
 
     // Verificar si el usuario ya existe por su email
