@@ -1,8 +1,29 @@
 const express = require("express");
 const router = express.Router();
+const {
+  getOrderDetails,
+  getOrderDetailById,
+  createOrderDetail,
+  updateOrderDetail,
+  deleteOrderDetail,
+} = require("../controllers/orderDetail-controller");
 
-const getOrderDetails = require("../controllers/orderDetail-controller");
-
-router.get("/order-detail", getOrderDetails);
+router.get("/order-details", getOrderDetails);
+router.get("/order-details/:id", getOrderDetailById);
+router.post("/order-details", createOrderDetail);
+router.put("/order-details/:id", updateOrderDetail);
+router.delete("/order-details/:id", deleteOrderDetail);
 
 module.exports = router;
+
+/* 
+Esquema de datos para una orderDetail (una order detail se podría crear apenas se agrega un item al carro)
+{
+  id_orderDetail -> generado automáticamente
+  createdAt -> generado automáticamente
+  id_product
+  quantity
+  price
+  id_order 
+}
+*/
