@@ -5,6 +5,9 @@ const Users = require("../config/dbConfig");
 //getAllUsers, deprecated ja
 //getUserById id viene por params
 //getUserByValues, por ejemplo email o id  pero por data en el body...
+// post registerUser
+// put updateUserbyId
+// delete deleteUserById
 
 const getAllUsers = async (req, res) => {
   //para para hacer mas limpio el codigo
@@ -88,10 +91,57 @@ const getUserById = (req, res) => {
   }
 };
 
-const getUserByAnyValue = (req, res) => {
-  const { name, id_user, email } = req.body;
-  //continuará...
-};
+// // completo getUserByAnyValue y dejo comentado.
+// const getUserByAnyValue = (req, res) => {
+//   const { name, id_user, email } = req.body;
+
+//   // Variables para construir la consulta SQL
+//   let sql = "SELECT * FROM Users WHERE ";
+//   let conditions = [];
+//   let values = [];
+
+//   // acá agrego condiciones basadas en los valores proporcionados
+//   if (name) {
+//     conditions.push("name = ?");
+//     values.push(name);
+//   }
+//   if (id_user) {
+//     conditions.push("id_user = ?");
+//     values.push(id_user);
+//   }
+//   if (email) {
+//     conditions.push("email = ?");
+//     values.push(email);
+//   }
+
+//   // si no se proporciona ningún valor de búsqueda, va a retornar un error
+//   if (conditions.length === 0) {
+//     return res
+//       .status(400)
+//       .send({ message: "No se proporcionó un valor de búsqueda" });
+//   }
+
+//   // uniendo la consulta SQL con las condiciones mediante OR
+//   sql += conditions.join(" OR ");
+
+//   // para ejecutar la consulta SQL
+//   Users.query(sql, values, (error, results) => {
+//     if (error) {
+//       console.error("Error al buscar usuario:", error);
+//       return res
+//         .status(500)
+//         .send({ message: "Error al buscar usuario", error: error });
+//     }
+
+//     if (results.length === 0) {
+//       return res.status(404).send({
+//         message: "No se encontraron usuarios con los valores proporcionados",
+//       });
+//     }
+
+//     res.status(200).send({ message: "Usuarios encontrados", data: results });
+//   });
+// };
 
 //post
 const registerUser = (req, res) => {
@@ -158,7 +208,110 @@ const registerUser = (req, res) => {
         });
       });
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error inesperado:", error);
+    return res
+      .status(500)
+      .send({ message: "Algo salió mal en el servidor", error: error });
+  }
 };
 
-module.exports = { getAllUsers, getUserById, getUserByAnyValue, registerUser };
+// actualizar un usuario por id
+const updateUserById = (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, email, password } = req.body;
+
+    if (!id || (!name && !email && !password)) {
+      return res.status(400).send({
+        message:
+          "ID y al menos un valor (name, email o password) son necesarios",
+      });
+    }
+
+    let sql = "UPDATE Users SET ";
+    let updates = [];
+    let values = [];
+
+    if (name) {
+      updates.push("name = ?");
+      values.push(name);
+    }
+    if (email) {
+      updates.push("email = ?");
+      values.push(email);
+    }
+    if (password) {
+      updates.push("password = ?");
+      values.push(password);
+    }
+
+    sql += updates.join(", ") + " WHERE id_user = ?";
+    values.push(id);
+
+    Users.query(sql, values, (error, results) => {
+      if (error) {
+        console.error("Error al actualizar usuario:", error);
+        return res
+          .status(500)
+          .send({ message: "Error al actualizar usuario", error: error });
+      }
+
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .send({ message: "No existe un usuario con ese ID" });
+      }
+
+      res.status(200).send({ message: "Usuario actualizado exitosamente" });
+    });
+  } catch (error) {
+    console.error("Error inesperado:", error);
+    return res
+      .status(500)
+      .send({ message: "Algo salió mal en el servidor", error: error });
+  }
+};
+
+// eliminar un usuario por id
+const deleteUserById = (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res
+        .status(400)
+        .send({ message: "No se proporcionó el ID del usuario" });
+    }
+
+    const sql = "DELETE FROM Users WHERE id_user = ?";
+    Users.query(sql, [id], (error, results) => {
+      if (error) {
+        console.error("Error al eliminar usuario:", error);
+        return res
+          .status(500)
+          .send({ message: "Error al eliminar usuario", error: error });
+      }
+
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .send({ message: "No existe un usuario con ese ID" });
+      }
+
+      res.status(200).send({ message: "Usuario eliminado exitosamente" });
+    });
+  } catch (error) {
+    console.error("Error inesperado:", error);
+    return res
+      .status(500)
+      .send({ message: "Algo salió mal en el servidor", error: error });
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  registerUser,
+  updateUserById,
+  deleteUserById,
+};
