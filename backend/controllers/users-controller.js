@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 //getUserById id viene por params
 //getUserByValues, por ejemplo email o id  pero por data en el body...
 // post registerUser
+// post logIn
 // put updateUserbyId
 // delete deleteUserById
 
@@ -169,7 +170,7 @@ const registerUser = (req, res) => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (!email.match(emailRegex)) {
-     return res.status(500).send({ message: "Eso no parece un email" });
+      return res.status(500).send({ message: "Eso no parece un email" });
     }
 
     // Verificar si el usuario ya existe por su email
@@ -229,6 +230,23 @@ const registerUser = (req, res) => {
   }
 };
 
+const logIn = (req, res) => {
+  const { id_user, email } = req.user;
+  const token = req.token;
+  try {
+    //armo la response con... por ejemplo las config del user que en este caso no hay nada hecho de eso
+    //y devuelvo el token y la info del user para guardar en localstore
+    const userData = { id_user: id_user, email: email, token }; //token ya viene del authHandler como {token: biribiri}
+    return res
+      .status(200)
+      .send({ message: "Sesión iniciada con éxito", userData: userData });
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ message: "Error de autenticación", error: error });
+  }
+};
+
 // actualizar un usuario por id
 const updateUserById = (req, res) => {
   try {
@@ -252,6 +270,7 @@ const updateUserById = (req, res) => {
     }
     if (email) {
       updates.push("email = ?");
+
       values.push(email);
     }
     if (password) {
@@ -261,6 +280,9 @@ const updateUserById = (req, res) => {
 
     sql += updates.join(", ") + " WHERE id_user = ?";
     values.push(id);
+
+    /* En caso de que el update se del EMAIL ya que es unique, antes de actualizarlo tendriamos que
+    comprobar que no existe el email en la db, y verificar que sea un email correcto */
 
     Users.query(sql, values, (error, results) => {
       if (error) {
@@ -327,4 +349,5 @@ module.exports = {
   registerUser,
   updateUserById,
   deleteUserById,
+  logIn,
 };
