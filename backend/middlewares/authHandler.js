@@ -70,26 +70,33 @@ function authenticateUser(req, res, next) {
 }
 
 // Middleware para verificar el token JWT
-function verifyToken(req, res, next) {
-  const token = req.token;
-
-  if (!token) {
-    return res
-      .status(401)
-      .json({ message: "Acceso no autorizado, token no proporcionado" });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      console.error("Error al verificar el token JWT:", err);
-      return res.status(401).json({ message: "Token inválido o expirado" });
+const verifyToken=(req, res, next)=> {
+    // desd eel front debe agregar al fetch el header "Authorization: token ", el token que fué enviado al loguearce
+    const authHeader = req.headers['Authorization'];
+    //si no viene el encabezado o header
+    if (!authHeader) {
+      return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
     }
+  
+    // El encabezado de autorización debe tener la estructura "Bearer token", es es un tipo de auth, hay muchos mas
+    const token = authHeader.split(' ')[1];
+    //si no viene el token
+    if (!token) {
+      return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
+    }
+  
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        console.error("Error al verificar el token JWT:", err);
+        return res.status(401).json({ message: "Token inválido o expirado" });
+      }
+  
+     //si el token es valido se continua con el siguiente medoto del router, por ejemplo post order
+      next(); // Llama a la siguiente función de middleware
 
-    req.userId = decoded.id; // Almacenar el ID de usuario en el objeto `req`
-    next(); // Llama a la siguiente función de middleware
-  });
-}
-
+      //no apliqué los cambios a la ruta de producst 
+    });
+  }
 module.exports = {
   authenticateUser,
   verifyToken,
