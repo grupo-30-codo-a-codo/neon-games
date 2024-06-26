@@ -1,12 +1,12 @@
 CREATE DATABASE NeonGamesDB;
 USE NeonGamesDB;
 
-CREATE TABLE Categories (
+CREATE TABLE categories (
     id_category INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(32) NOT NULL UNIQUE
 );
 
-INSERT INTO Categories (id_category, category_name)
+INSERT INTO categories (id_category, category_name)
 VALUES
 (1, 'Estrategia'),
 (2, 'Battle Royale'),
@@ -15,7 +15,7 @@ VALUES
 (5, 'Deportes'),
 (6, 'Carreras');
 
-CREATE TABLE Products (
+CREATE TABLE products (
     id_product INT PRIMARY KEY AUTO_INCREMENT,
     cover VARCHAR(255),
     title VARCHAR(255) NOT NULL,
@@ -24,12 +24,12 @@ CREATE TABLE Products (
     id_category INT NOT NULL,
     game_description TEXT,
     developer VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id_category) REFERENCES Categories(id_category)
+    FOREIGN KEY (id_category) REFERENCES categories(id_category)
 );
 
-CREATE UNIQUE INDEX idx_title ON Products (title);
+CREATE UNIQUE INDEX idx_title ON products (title);
 
-INSERT INTO Products (id_product, cover, title, price, discount_price, id_category, game_description, developer)
+INSERT INTO products (id_product, cover, title, price, discount_price, id_category, game_description, developer)
 VALUES
 (1, 'https://res.cloudinary.com/dtrs7cus2/image/upload/v1719066580/age-of-empires_II_DE_fr43vy.jpg', 'Age of Empires II Definitive Edition', 6.99, NULL, 1, 'Un clásico juego de estrategia en tiempo real que regresa con gráficos mejorados en 4K, nuevo contenido y algunas mejoras en la jugabilidad.', 'Ensemble Studios'), 
 (2, 'https://res.cloudinary.com/dtrs7cus2/image/upload/v1719066580/age-of-mithology_extended-edition_p1gspz.jpg', 'Age of Mythology Extended Edition', 25.99, NULL, 1, 'Revive el clásico juego de estrategia con mitología antigua, ahora con gráficos mejorados y nuevas características como integración completa con Steamworks.', 'Ensemble Studios'), 
@@ -62,7 +62,7 @@ VALUES
 (29, 'https://res.cloudinary.com/dtrs7cus2/image/upload/v1719066584/valheim_v4fyzp.jpg', 'Valheim', 7.99, NULL, 4, 'Valheim: Un juego de exploración y supervivencia para 1 a 10 jugadores, ambientado en un mundo generado por procedimientos inspirado en la mitología nórdica. Fabrica armas, construye casas y enfrenta enemigos para demostrar tu valía a Odín.', 'Iron Gate AB'), 
 (30, 'https://res.cloudinary.com/dtrs7cus2/image/upload/v1719066584/warhammer_III_total-war_nfkkmx.jpg', 'Warhammer III Total War', 41.99, NULL, 1, 'Warhammer III Total War: Un juego de estrategia por turnos y tácticas en tiempo real, es el tercer juego de la serie Total War ambientado en la realidad alternativa Warhammer Fantasy. Ofrece combate multijugador en línea y batallas personalizadas en tiempo real.', 'Creative Assembly');
 
-CREATE TABLE Users (
+CREATE TABLE users (
     id_user INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -70,20 +70,20 @@ CREATE TABLE Users (
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-CREATE TABLE Orders (
+CREATE TABLE orders (
     id_order INT PRIMARY KEY AUTO_INCREMENT,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     id_user INT,
-    FOREIGN KEY (id_user) REFERENCES Users(id_user)
+    FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
 
-CREATE TABLE Order_Detail (
+CREATE TABLE order_detail (
     id_orderDetail INT PRIMARY KEY AUTO_INCREMENT,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     id_product INT,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     id_order INT,
-    FOREIGN KEY (id_product) REFERENCES Products(id_product),
-    FOREIGN KEY (id_order) REFERENCES Orders(id_order)
+    FOREIGN KEY (id_product) REFERENCES products(id_product),
+    FOREIGN KEY (id_order) REFERENCES orders(id_order)
 );
