@@ -14,7 +14,7 @@ const bcrypt = require("bcrypt");
 const getAllUsers = async (req, res) => {
   //para para hacer mas limpio el codigo
 
-  const sql = "SELECT * FROM Users";
+  const sql = "SELECT * FROM users";
 
   try {
     //no utilizamos async/await ya que no se aguarda una response fuera, sino que se maneja dentro del query callback
@@ -63,7 +63,7 @@ const getUserById = (req, res) => {
     }
 
     // Realizar la consulta SQL para obtener el usuario por su ID
-    const sql = "SELECT * FROM Users WHERE id_user = ?";
+    const sql = "SELECT * FROM users WHERE id_user = ?";
     Users.query(sql, [id], (error, results) => {
       if (error) {
         console.error("Error al obtener usuario:", error);
@@ -99,7 +99,7 @@ const getUserById = (req, res) => {
 //   const { name, id_user, email } = req.body;
 
 //   // Variables para construir la consulta SQL
-//   let sql = "SELECT * FROM Users WHERE ";
+//   let sql = "SELECT * FROM users WHERE ";
 //   let conditions = [];
 //   let values = [];
 
@@ -176,7 +176,7 @@ const registerUser = (req, res) => {
     // Verificar si el usuario ya existe por su email
     //si se intenta hacer el insert sin verificar la base tira un error ya que el email es unique, pero es
     //mejor controlarlo nosotros samu
-    const sqlCheck = "SELECT * FROM Users WHERE email = ?";
+    const sqlCheck = "SELECT * FROM users WHERE email = ?";
     Users.query(sqlCheck, [email], (error, results) => {
       if (error) {
         console.error("Error al verificar usuario por email:", error);
@@ -203,7 +203,7 @@ const registerUser = (req, res) => {
         //arma el objeto, es lo mismo que {name:name,email:email....}
         const newUser = { name, email, password: hashedPassword };
 
-        const sql = "INSERT INTO Users SET ?";
+        const sql = "INSERT INTO users SET ?";
 
         Users.query(sql, newUser, (error, results) => {
           if (error) {
@@ -260,7 +260,7 @@ const updateUserById = (req, res) => {
       });
     }
 
-    let sql = "UPDATE Users SET ";
+    let sql = "UPDATE users SET ";
     let updates = [];
     let values = [];
 
@@ -318,7 +318,7 @@ const deleteUserById = (req, res) => {
         .send({ message: "No se proporcionó el ID del usuario" });
     }
 
-    const sql = "DELETE FROM Users WHERE id_user = ?";
+    const sql = "DELETE FROM users WHERE id_user = ?";
     Users.query(sql, [id], (error, results) => {
       if (error) {
         console.error("Error al eliminar usuario:", error);

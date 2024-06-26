@@ -24,7 +24,7 @@ function authenticateUser(req, res, next) {
      return res.status(500).send({ message: "Eso no parece un email" });
    }
 
-  const sql = "SELECT * FROM Users WHERE email = ?";
+  const sql = "SELECT * FROM users WHERE email = ?";
   Users.query(sql, [email], (err, results) => {
     if (err) {
       console.error("Error al consultar la base de datos:", err);
@@ -72,7 +72,7 @@ function authenticateUser(req, res, next) {
 // Middleware para verificar el token JWT
 const verifyToken=(req, res, next)=> {
     // desd eel front debe agregar al fetch el header "Authorization: token ", el token que fué enviado al loguearce
-    const authHeader = req.headers['Authorization'];
+    const authHeader = req.headers['authorization'];
     //si no viene el encabezado o header
     if (!authHeader) {
       return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
@@ -84,7 +84,7 @@ const verifyToken=(req, res, next)=> {
     if (!token) {
       return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
     }
-  
+  console.log(token)
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         console.error("Error al verificar el token JWT:", err);
