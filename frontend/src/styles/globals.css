@@ -120,6 +120,12 @@ h5 {
 
 .search-cart-btn {
   font-size: 2rem;
+  color: var(--blanco);
+}
+.search-cart-btn:hover {
+  cursor: pointer;
+  color: var(--negro);
+  transition: color 0.5s;
 }
 
 .navbar-links {
@@ -183,11 +189,6 @@ h5 {
   transition: color 0.5s;
 }
 
-#cart-btn:hover {
-  cursor: pointer;
-  color: var(--negro);
-}
-
 #search-btn {
   display: flex;
   flex-direction: row;
@@ -200,14 +201,11 @@ h5 {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 transparent;
   background-color: transparent;
-  transition: color 0.5s;
 }
-
-#search-btn:hover {
-  cursor: pointer;
-  color: var(--negro);
+#user-btn {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
 }
-
 /* footer section */
 footer {
   width: 100%;
