@@ -30,8 +30,8 @@
           <a href="./src/pages/dashboard.html">Dashboard</a>
         </div>
         <div class="search-cart">
-          <div id="user-btn">
-            <a href=""><i class='bx bx-user search-cart-btn'></i></a>
+          <div>
+            <a id="user-btn"><i class='bx bx-user search-cart-btn'></i></a>
           </div>
           <div>
             <a id="cart-btn" href="./src/pages/cart.html"><i class="bx bx-cart-alt search-cart-btn"></i></a>
@@ -46,6 +46,26 @@
       </div>
     </nav>
   </header>
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close"><i class='bx bxs-message-square-x'></i></span>
+      <h2>NeonGames</h2>
+      <h3>Videogames Store</h3>
+      <form class="loginForm">
+        <div class="user-container">
+          <label for="username">Usuario:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="password-container">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="btn-submit-form-container">
+          <button type="submit">¡Vamos!</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <main>
     <button class="returnBtn"><i class='bx bx-chevron-up'></i></button>
     <!-- BILLBOARD SECTION -->

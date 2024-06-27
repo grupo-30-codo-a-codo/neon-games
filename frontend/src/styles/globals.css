@@ -285,9 +285,64 @@ footer {
   font-size: 1rem;
   text-decoration: none;
 }
-
+/* modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content,
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  padding: 20px;
+  border: 5px double var(--rosa-intenso);
+  width: 90%;
+  height: 80%;
+  position: relative;
+}
+.loginForm {
+  height: 80%;
+  width: 90%;
+  gap: 2rem;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--rosa-intenso);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: var(--azul-cielo);
+  transform: scale(1.5);
+  transition: ease 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
 /* Desktop Styles */
 @media (min-width: 768px) {
+  .modal-content {
+    width: 50%;
+    height: 80%;
+  }
   .navbar {
     position: static;
   }
