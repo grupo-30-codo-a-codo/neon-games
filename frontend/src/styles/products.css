@@ -32,6 +32,7 @@ main,
   justify-content: center;
   align-items: center;
   gap: 10px;
+
 }
 
 #search-input {
@@ -44,6 +45,7 @@ main,
   box-shadow: 0px 0px 10px var(--azul-cielo);
   border-radius: 20px;
 }
+
 #search-input:focus {
   color: #f113a8;
   box-shadow: 0px 0px 10px var(--rosa-intenso);
@@ -57,6 +59,7 @@ input:focus {
   color: var(--azul-cielo);
   padding-left: 10px;
 }
+
 #search-button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -70,15 +73,29 @@ input:focus {
   border-radius: 20px;
   cursor: pointer;
 }
+
 #search-button:hover {
-  background: linear-gradient(
-    to top,
-    var(--rosa-intenso),
-    var(--morado-oscuro)
-  );
+  background: linear-gradient(to top,
+      var(--rosa-intenso),
+      var(--morado-oscuro));
   transform: scale(1.05);
   transition: ease 0.2s;
 }
+
+#reset-button {
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: none;
+  background: linear-gradient(to top,
+  var(--rosa-intenso),
+  var(--morado-oscuro));
+}
+
+
 .grid-container-cards {
   width: 100%;
   display: grid;
@@ -95,11 +112,13 @@ input:focus {
   color: white;
   cursor: pointer;
 }
+
 .offer-card:hover,
 .card:hover {
   transition: ease 0.3s;
   transform: scale(1.1);
 }
+
 .cover {
   height: 70%;
   width: 100%;
@@ -115,9 +134,11 @@ input:focus {
   overflow: hidden;
   overflow-y: scroll;
 }
+
 .description::-webkit-scrollbar {
   width: 0px;
 }
+
 .title-card {
   width: 65%;
   text-transform: uppercase;
@@ -129,6 +150,7 @@ input:focus {
   left: 2%;
   top: 10%;
 }
+
 .price {
   width: 30%;
   word-wrap: break-word;
@@ -141,6 +163,7 @@ input:focus {
   bottom: 15%;
   margin-right: 10px;
 }
+
 /* elementos de oferta */
 .discount-tag {
   position: absolute;
@@ -151,6 +174,7 @@ input:focus {
   padding: 3px;
   border-radius: 10px 0px 10px 0;
 }
+
 .discount-price {
   position: absolute;
   text-decoration: line-through;
@@ -160,6 +184,7 @@ input:focus {
   bottom: 50%;
   margin-right: 10px;
 }
+
 /* ------------------- */
 
 /* bordes */
@@ -167,14 +192,17 @@ input:focus {
 .card {
   border-radius: 10px 10px 10px 0;
 }
+
 .cover {
   border-radius: 10px 10px 0px 0;
 }
+
 .description {
   border-radius: 0 0 20px 0;
 }
 
 @media (min-width: 480px) {
+
   .offer-card,
   .card {
     height: 120px;
@@ -185,6 +213,7 @@ input:focus {
   #search-input {
     width: 70%;
   }
+
   .grid-container-cards {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -196,47 +225,58 @@ input:focus {
     width: 90%;
     gap: 15px;
   }
+
   .offer-card,
   .card {
     height: 150px;
   }
+
   .title-card {
     font-size: 0.8rem;
   }
+
   .price {
     font-size: 0.8rem;
   }
 }
+
 @media (min-width: 1024px) {
   body {
     gap: 60px;
   }
+
   #search-input {
     width: 60%;
   }
+
   .grid-container-cards {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(8, 1fr);
     gap: 20px;
   }
+
   .offer-card,
   .card {
     height: 120px;
   }
 }
+
 @media (min-width: 1280px) {
   body {
     gap: 90px;
   }
+
   .grid-container-cards {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
     gap: 30px;
   }
+
   .offer-card,
   .card {
     height: 150px;
   }
+
   .title-card {
     font-size: 1rem;
   }
