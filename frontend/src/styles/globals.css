@@ -202,10 +202,131 @@ h5 {
   box-shadow: 0 0 0 transparent;
   background-color: transparent;
 }
-#user-btn {
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
+
+/* modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content,
+.login-registerForm,
+.head-login-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+  padding: 20px;
+  border: 5px double var(--rosa-intenso);
+  box-shadow: 0rem 0rem 2rem var(--morado-oscuro);
+  width: 90%;
+  height: 95%;
+  position: relative;
+}
+.login-register-logo,
+h2 {
+  height: 5rem;
+  font-size: 1rem;
+}
+
+.login-registerForm {
+  height: 100%;
+  width: 90%;
+  gap: 2rem;
+  font-size: 1rem;
+  justify-content: space-evenly;
+}
+.input-login-register {
+  background-color: transparent;
+  color: var(--rosa-intenso);
+  border: none;
+  border-bottom: 1px solid var(--rosa-intenso);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  outline: none;
+}
+form label {
+  padding: 0rem 0.5rem;
+  font-size: 1rem;
+}
+.input-login-register:focus {
+  border-color: var(--azul-cielo);
+  color: var(--azul-cielo);
+  transition: ease-in-out 0.3s;
+}
+.login-register-submit {
+  color: var(--negro);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  border: 5px double;
+  border-radius: 2rem;
+  background: linear-gradient(0deg, var(--morado-oscuro), var(--rosa-intenso));
+  cursor: pointer;
+}
+.login-register-submit:hover {
+  color: black;
+  background: linear-gradient(
+    180deg,
+    var(--morado-oscuro),
+    var(--rosa-intenso)
+  );
+  box-shadow: 0rem 0rem 1rem var(--morado-oscuro);
+  transform: scale(1.1);
+  transition: ease 0.2s;
+}
+.register-link {
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.register-link:hover,
+.back-login-link:hover {
+  color: var(--rosa-intenso);
+  text-align: center;
+  transition: ease 0.3s;
+}
+.back-login-link {
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 1rem;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--rosa-intenso);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: var(--azul-cielo);
+  transform: scale(1.5);
+  transition: ease 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* close modal section */
+
 /* footer section */
 footer {
   width: 100%;
@@ -285,63 +406,24 @@ footer {
   font-size: 1rem;
   text-decoration: none;
 }
-/* modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-}
-.modal-content,
-.loginForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.modal-content {
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 1rem;
-  padding: 20px;
-  border: 5px double var(--rosa-intenso);
-  width: 90%;
-  height: 80%;
-  position: relative;
-}
-.loginForm {
-  height: 80%;
-  width: 90%;
-  gap: 2rem;
-}
-.close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: var(--rosa-intenso);
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close:hover,
-.close:focus {
-  color: var(--azul-cielo);
-  transform: scale(1.5);
-  transition: ease 0.3s;
-  text-decoration: none;
-  cursor: pointer;
-}
+
 /* Desktop Styles */
 @media (min-width: 768px) {
   .modal-content {
     width: 50%;
     height: 80%;
+  }
+  .login-register-logo,
+  h2 {
+    height: 6rem;
+    font-size: 2rem;
+  }
+  form label {
+    padding: 0rem 1rem;
+    font-size: 1.5rem;
+  }
+  .login-register-submit {
+    font-size: 1.2rem;
   }
   .navbar {
     position: static;
