@@ -13,15 +13,16 @@ const mocked = {
   title: "Age of Empires II Definitive Edition",
 };
 import { getAllProducts } from "../services/products";
-import { agregarAlCarro } from "./carroCompras";
+import { agregarAlCarro, manageItemsInCartValue } from "./carroCompras";
 const container = document.getElementById("grid-container-cards");
 const searchInput = document.getElementById("search-input");
 const resetButton = document.getElementById("reset-button");
 
 let allProducts = [];
-let carroCompras = [];
+              
 
 const validateCarroOrCreateon = () => {
+  let carroCompras = [];
   // Recuperar la cadena JSON desde localStorage
   let storedObjetos = localStorage.getItem("carroDeCompras");
   let arrayObjetosRecuperado = JSON.parse(storedObjetos);
@@ -72,6 +73,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       addCartItem.addEventListener("click", () => {
         agregarAlCarro(producto);
+        manageItemsInCartValue()
+        alert(`Se agregó el juego ${producto.title} al carrito`)
       });
     });
   } catch (error) {
@@ -115,6 +118,8 @@ const displayProducts = (products) => {
 
       addCartItem.addEventListener("click", () => {
         agregarAlCarro(producto);
+        manageItemsInCartValue()
+        alert(`Se agregó el juego ${producto.title} al carrito`)
       });
     });
   } catch (error) {

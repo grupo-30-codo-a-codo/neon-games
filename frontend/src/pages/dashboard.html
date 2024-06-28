@@ -28,8 +28,9 @@
           </div>
           <div class="search-cart">
             <div>
-              <a id="cart-btn" href="./cart.html"
-                ><i class="bx bx-cart-alt search-cart-btn"></i
+              <a id="cart-btn" href="./cart.html" style="position: relative"
+                ><i class="bx bx-cart-alt search-cart-btn"></i>
+                <i id="items-in-cart"></i
               ></a>
             </div>
             <div id="search-btn">
@@ -45,6 +46,7 @@
       </nav>
     </header>
     <main id="dashboard-page">
+      <button class="returnBtn"><i class='bx bx-chevron-up'></i></button>
       <h1>¡Bienvenido/a al panel de control administrativo!</h1>
       <section>
         <h2>Productos existentes</h2>
@@ -255,6 +257,7 @@
         </div>
       </div>
     </footer>
+    <script src="../../main.js" type="module"></script>
     <script src="../scripts/navbar.js"></script>
   </body>
 </html>
