@@ -1,5 +1,120 @@
-const btnSearch = document.querySelector("#search-button");
+//iterar la response, crear el html con js y sumarlo al dom
+//objeto de ejemplo
+const mocked = {
+  cover:
+    "https://res.cloudinary.com/dtrs7cus2/image/upload/v1719066580/age-of-empires_II_DE_fr43vy.jpg",
+  developer: "Ensemble Studios",
+  discount_price: null,
+  game_description:
+    "Un clásico juego de estrategia en tiempo real que regresa con gráficos mejorados en 4K, nuevo contenido y algunas mejoras en la jugabilidad.",
+  id_category: 1,
+  id_product: 1,
+  price: "6.99",
+  title: "Age of Empires II Definitive Edition",
+};
+import { getAllProducts } from "../services/products";
 
-btnSearch.addEventListener("click", function () {
-  alert("Función en desarrollo para segunda etapa 😉");
+const container = document.getElementById("grid-container-cards");
+const searchInput = document.getElementById("search-input");
+const resetButton = document.getElementById("reset-button");
+
+let allProducts = [];
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    allProducts = await getAllProducts();
+
+    // Limpia el contenedor antes de mostrar nuevos productos
+    container.innerHTML = "";
+
+    if (allProducts.length === 0) {
+      const mensaje = document.createElement("div");
+      mensaje.classList.add("border-card");
+      mensaje.innerHTML = `
+        <div class="card">
+          No se encontró ningún juego para la búsqueda realizada, prueba con otra :D
+        </div>
+      `;
+      container.appendChild(mensaje);
+    }
+
+    allProducts.forEach((producto) => {
+      const card = document.createElement("div");
+      card.classList.add("border-card");
+      card.innerHTML = `
+        <div class="card">
+          <img src="${producto.cover}" alt="${producto.title}" class="cover"   loading="lazy" />
+          <div class="description">
+            <h2 class="title-card">${producto.title}</h2>
+            <h3 class="price">${producto.price}</h3>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+  }
+});
+
+// Función para mostrar productos filtrados
+const displayProducts = (products) => {
+  // Limpiar el contenedor de productos
+  container.innerHTML = "";
+
+  try {
+    if (products.length === 0) {
+      const mensaje = document.createElement("div");
+      // mensaje.classList.add("");
+      mensaje.innerHTML = `
+        <div class="card">
+          No se encontró ningún juego para la búsqueda realizada, prueba con otra :D
+        </div>
+      `;
+      container.appendChild(mensaje);
+    }
+
+    products.forEach((producto) => {
+      const card = document.createElement("div");
+      card.classList.add("border-card");
+      card.innerHTML = `
+        <div class="card">
+          <img src="${producto.cover}" alt="${producto.title}" class="cover"   loading="lazy" />
+          <div class="description">
+            <h2 class="title-card">${producto.title}</h2>
+            <h3 class="price">${producto.price}</h3>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error al mostrar productos:", error);
+  }
+};
+
+// Evento para manejar la búsqueda de productos
+searchInput.addEventListener("input", () => {
+  try {
+    const searchText = searchInput.value.trim().toLowerCase();
+    document.getElementById("reset-button").style.display = "block";
+
+    // Filtrar productos según el texto de búsqueda
+    const filteredProducts = allProducts.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchText) ||
+        product.game_description.toLowerCase().includes(searchText)
+    );
+
+    // Mostrar productos filtrados en la interfaz
+    displayProducts(filteredProducts);
+  } catch (error) {
+    console.error("Error al buscar productos:", error);
+  }
+});
+
+resetButton.addEventListener("click", () => {
+  searchInput.value = "";//borra el contenido del input
+  resetButton.style.display = "none"; //se esconde el boton para hacer reset en el input
+  searchInput.focus(); //hace foco en el input de search
+  displayProducts(allProducts);// muestra todos los productos nuevamente
 });
