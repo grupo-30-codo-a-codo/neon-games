@@ -50,6 +50,7 @@
       </nav>
     </header>
     <main id="cart-page">
+      <button class="returnBtn"><i class="bx bx-chevron-up"></i></button>
       <h1>Resumen de productos</h1>
       <section>
         <h2>Productos agregados</h2>
@@ -59,130 +60,6 @@
               <div id="card-title">
                 <h2>Lista de productos</h2>
               </div>
-
-              <div class="cart-item">
-                <div class="item-description">
-                  <img
-                    src="../assets/games/cover-cards/age-of-mithology_extended-edition.webp"
-                    alt="age-of-mithology_extended-edition"
-                  />
-                  <div class="item-details">
-                    <h3>Age of Mythology</h3>
-                    <ul>
-                      <li>Genero: Estrategia</li>
-                      <li>Otros títulos: Age of Empires II</li>
-                      <li>Calificación: 5/5</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-details_commercial">
-                  <div>
-                    <div>
-                      <h4>Precio:</h4>
-                      <p>$12345</p>
-                    </div>
-                    <div>
-                      <h4>Cantidad:</h4>
-                      <p>1</p>
-                    </div>
-                  </div>
-                  <div class="item-buttons">
-                    <button class="delete-button">
-                      <i class="bx bx-trash"></i>
-                    </button>
-                    <button class="decrement-button">
-                      <i class="bx bx-minus"></i>
-                    </button>
-                    <button class="increment-button">
-                      <i class="bx bx-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <hr />
-
-              <div class="cart-item">
-                <div class="item-description">
-                  <img
-                    src="../assets/games/cover-cards/battlefield_2042.webp"
-                    alt="battlefield_2042"
-                  />
-                  <div class="item-details">
-                    <h3>Battlefield 2042</h3>
-                    <ul>
-                      <li>Genero: FPS</li>
-                      <li>Otros títulos: Battlefield V</li>
-                      <li>Calificación: 5/5</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-details_commercial">
-                  <div>
-                    <div>
-                      <h4>Precio:</h4>
-                      <p>$12345</p>
-                    </div>
-                    <div>
-                      <h4>Cantidad:</h4>
-                      <p>1</p>
-                    </div>
-                  </div>
-                  <div class="item-buttons">
-                    <button class="delete-button">
-                      <i class="bx bx-trash"></i>
-                    </button>
-                    <button class="decrement-button">
-                      <i class="bx bx-minus"></i>
-                    </button>
-                    <button class="increment-button">
-                      <i class="bx bx-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <hr />
-
-              <div class="cart-item">
-                <div class="item-description">
-                  <img
-                    src="../assets/games/cover-cards/the-forest.webp"
-                    alt="the-forest"
-                  />
-                  <div class="item-details">
-                    <h3>The forest</h3>
-                    <ul>
-                      <li>Genero: Survival</li>
-                      <li>Otros títulos: Sons of the forest</li>
-                      <li>Calificación: 5/5</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-details_commercial">
-                  <div>
-                    <div>
-                      <h4>Precio:</h4>
-                      <p>$12345</p>
-                    </div>
-                    <div>
-                      <h4>Cantidad:</h4>
-                      <p>1</p>
-                    </div>
-                  </div>
-                  <div class="item-buttons">
-                    <button class="delete-button">
-                      <i class="bx bx-trash"></i>
-                    </button>
-                    <button class="decrement-button">
-                      <i class="bx bx-minus"></i>
-                    </button>
-                    <button class="increment-button">
-                      <i class="bx bx-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </article>
           <article>
@@ -191,29 +68,10 @@
                 <h2>Resumen de productos</h2>
               </div>
               <ul id="items-list">
-                <li class="list-item">
-                  <span>Age of Mythology</span>
-                  <span>$12345</span>
-                </li>
-                <li class="list-item">
-                  <span>Battlefield 2042</span>
-                  <span>$12345</span>
-                </li>
-                <li class="list-item">
-                  <span>The forest</span>
-                  <span>$12345</span>
-                </li>
-              </ul>
-              <div>
-                <ul>
-                  <li>Precio total:</li>
-                  <li>$12345</li>
+              
                 </ul>
               </div>
-              <div>
-                <button>Confirmar compra</button>
-                <button>Limpiar carro</button>
-              </div>
+             
             </div>
           </article>
         </div>
@@ -262,6 +120,15 @@
         </div>
       </div>
     </footer>
+
     <script src="../scripts/navbar.js"></script>
+    <script src="../scripts/carroCompras.js" type="module"></script>
+    <script type="module">
+      import { mostrarCarro } from "../scripts/carroCompras.js";
+
+      window.onload = function () {
+        mostrarCarro();
+      };
+    </script>
   </body>
 </html>
