@@ -1,3 +1,5 @@
+import { manageItemsInCartValue } from "./src/scripts/carroCompras";
+
 // modal functionality login and register
 document.addEventListener("DOMContentLoaded", function () {
   var loginModal = document.querySelector(".loginModal");
@@ -183,3 +185,6 @@ carousels.forEach((carouselContainer) => {
 
   showCards();
 });
+
+
+manageItemsInCartValue()//lo puse aca porque este script se importa globalmente en todos las vistas, actualiza el icono del carrito

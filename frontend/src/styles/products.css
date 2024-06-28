@@ -95,29 +95,36 @@ input:focus {
   width: 40px;
   height: 40px;
   display: none;
-  background: linear-gradient(to top,
-      var(--rosa-intenso),
-      var(--morado-oscuro));
+ color: aliceblue;
+ background-color: transparent;
+ cursor: pointer;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+border: none;
 }
 
 .add-button {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+ border-top-right-radius: 14px;
+ border-bottom-left-radius: 14px;
   cursor: pointer;
-  background-color: #00edff ;
-  right: 4px;
-  top: 4px;
+  background-color: rgba(238, 0, 242, 0.671) ;
+  right: -2px;
+  top: -1px;
   border:solid 1px black;
   transition: background-color 0.3s;
   text-decoration: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra predeterminada */
+  box-shadow: 0px 2px 3px rgb(25, 22, 22); /* Sombra predeterminada */
+  color: white;
+ 
+  font-size: 24px;
 }
 
 .add-button:hover {
-  background-color:#f113a8;
-  cursor: pointer;
+background-color: rgba(1, 68, 150, 0.739);
+  color: black;
+
 }
 
 
@@ -158,6 +165,7 @@ input:focus {
   bottom: 0;
   overflow: hidden;
   overflow-y: scroll;
+ 
 }
 
 .description::-webkit-scrollbar {
@@ -257,7 +265,7 @@ input:focus {
   }
 
   .title-card {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
 
   .price {
@@ -303,7 +311,7 @@ input:focus {
   }
 
   .title-card {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 

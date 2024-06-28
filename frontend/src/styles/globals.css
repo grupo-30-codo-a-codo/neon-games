@@ -40,6 +40,7 @@ h5 {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--azul-cielo);
   border-radius: 20px;
@@ -122,6 +123,7 @@ h5 {
   font-size: 2rem;
   color: var(--blanco);
 }
+
 .search-cart-btn:hover {
   cursor: pointer;
   color: var(--negro);
@@ -202,6 +204,7 @@ h5 {
   box-shadow: 0 0 0 transparent;
   background-color: transparent;
 }
+
 .user-btn {
   background: none;
   border: none;
@@ -222,6 +225,7 @@ h5 {
   justify-content: center;
   align-items: center;
 }
+
 .modal-content,
 .login-registerForm,
 .head-login-register {
@@ -230,6 +234,7 @@ h5 {
   align-items: center;
   justify-content: start;
 }
+
 .modal-content {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 1rem;
@@ -240,6 +245,7 @@ h5 {
   height: 95%;
   position: relative;
 }
+
 .login-register-logo,
 h2 {
   height: 5rem;
@@ -253,6 +259,7 @@ h2 {
   font-size: 1rem;
   justify-content: space-evenly;
 }
+
 .input-login-register {
   background-color: transparent;
   color: var(--rosa-intenso);
@@ -262,15 +269,18 @@ h2 {
   padding: 0.5rem;
   outline: none;
 }
+
 form label {
   padding: 0rem 0.5rem;
   font-size: 1rem;
 }
+
 .input-login-register:focus {
   border-color: var(--azul-cielo);
   color: var(--azul-cielo);
   transition: ease-in-out 0.3s;
 }
+
 .login-register-submit {
   color: var(--negro);
   padding: 1rem;
@@ -281,33 +291,36 @@ form label {
   background: linear-gradient(0deg, var(--morado-oscuro), var(--rosa-intenso));
   cursor: pointer;
 }
+
 .login-register-submit:hover {
   color: black;
-  background: linear-gradient(
-    180deg,
-    var(--morado-oscuro),
-    var(--rosa-intenso)
-  );
+  background: linear-gradient(180deg,
+      var(--morado-oscuro),
+      var(--rosa-intenso));
   box-shadow: 0rem 0rem 1rem var(--morado-oscuro);
   transform: scale(1.1);
   transition: ease 0.2s;
 }
+
 .register-link {
   color: var(--blanco);
   text-decoration: none;
   font-size: 1.2rem;
 }
+
 .register-link:hover,
 .back-login-link:hover {
   color: var(--rosa-intenso);
   text-align: center;
   transition: ease 0.3s;
 }
+
 .back-login-link {
   color: var(--blanco);
   text-decoration: none;
   font-size: 1rem;
 }
+
 .close {
   position: absolute;
   top: 10px;
@@ -317,6 +330,7 @@ form label {
   font-weight: bold;
   cursor: pointer;
 }
+
 .close:hover,
 .close:focus {
   color: var(--azul-cielo);
@@ -325,6 +339,7 @@ form label {
   text-decoration: none;
   cursor: pointer;
 }
+
 /* close modal section */
 
 /* footer section */
@@ -413,21 +428,26 @@ footer {
     width: 50%;
     height: 80%;
   }
+
   .login-register-logo,
   h2 {
     height: 6rem;
     font-size: 2rem;
   }
+
   form label {
     padding: 0rem 1rem;
     font-size: 1.5rem;
   }
+
   .login-register-submit {
     font-size: 1.2rem;
   }
+
   .navbar {
     position: static;
   }
+
   .navbar-links {
     display: flex;
     position: static;
@@ -477,4 +497,20 @@ footer {
     font-size: 2rem;
     padding: 5px 15px;
   }
+}
+
+#items-in-cart {
+
+  display: none;
+  position: absolute;
+  font-size: small;
+  background-color: red;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  bottom: 0px;
+  right: 6px;
+  color: white;
+
 }

@@ -1,3 +1,5 @@
+
+
 const hamburgerMenu = document.getElementById("hamburger-menu");
 const navbarLinks = document.getElementById("navbar-links");
 
@@ -33,3 +35,4 @@ btn.onclick = function () {
     behavior: "smooth",
   });
 };
+
