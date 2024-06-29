@@ -21,7 +21,7 @@ function authenticateUser(req, res, next) {
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   if (!email.match(emailRegex)) {
-    return res.status(500).send({ message: " Eso no parece un email" });
+    return res.status(500).send({ message: "Eso no parece un email" });
   }
 
   const sql = "SELECT * FROM users WHERE email = ?";
@@ -88,7 +88,7 @@ const verifyToken = (req, res, next) => {
       .status(401)
       .json({ message: "Acceso no autorizado, token no proporcionado" });
   }
-  console.log(token);
+  //console.log(token);
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       console.error("Error al verificar el token JWT:", err);
