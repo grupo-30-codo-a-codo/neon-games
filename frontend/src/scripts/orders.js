@@ -5,7 +5,7 @@ import {
 } from "../services/orders";
 import { limpiarCarro } from "./carroCompras";
 import { obtenerCarroDelLocal } from "./carroCompras";
-
+/* 
 //borrar esto que esta harcodeado y deberia hacerse en el login
 localStorage.setItem(
   "token",
@@ -14,7 +14,7 @@ localStorage.setItem(
   )
 );
 localStorage.setItem("id_user", JSON.stringify(1));
-////
+//// */
 
 export const crearOrdenAndDetails = async () => {
   try {

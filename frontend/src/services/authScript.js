@@ -15,8 +15,8 @@ export async function loginUser(email, password) {
     if (response.ok) {
       const data = await response.json();
       console.log("Login exitoso.", data);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("id_user", data.id_user);
+      localStorage.setItem("token", JSON.stringify(data.userData.token.token));
+      localStorage.setItem("id_user",JSON.stringify( data.userData.id_user));
       return data;
     } else {
       const errorData = await response.json();
