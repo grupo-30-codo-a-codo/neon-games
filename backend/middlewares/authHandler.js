@@ -34,7 +34,7 @@ function authenticateUser(req, res, next) {
     if (results.length === 0) {
       return res
         .status(401)
-        .json({ message: "Email o contraseña incorrectos" });
+        .json({ message: " Email o contraseña incorrectos" });
     }
     //Si existe el usuario...
     const user = results[0];
@@ -49,7 +49,7 @@ function authenticateUser(req, res, next) {
       if (!bcryptResult) {
         return res
           .status(401)
-          .json({ message: "Email o contraseña incorrectos" });
+          .json({ message: " Email o contraseña incorrectos" });
       }
 
       // Si las credenciales son válidas, generamos un token JWT
@@ -88,7 +88,7 @@ const verifyToken = (req, res, next) => {
       .status(401)
       .json({ message: "Acceso no autorizado, token no proporcionado" });
   }
-  //  console.log(token)
+  //console.log(token);
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       console.error("Error al verificar el token JWT:", err);
