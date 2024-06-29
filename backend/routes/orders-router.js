@@ -6,15 +6,20 @@ const {
   createOrder,
   updateOrder,
   deleteOrder,
+  getCompleteOrderById,
 } = require("../controllers/orders-controller");
 
-const authControllers= require("../middlewares/authHandler")
-
+const authControllers = require("../middlewares/authHandler");
 
 router.get("/orders", getOrders);
 router.get("/orders/:id", getOrderById);
+router.get(
+  "/orders/complete/:id",
+  authControllers.verifyToken,
+  getCompleteOrderById
+);
 //Se agregó el middleware para validar que el usuario tenga un jwt válido antes de crear una orden, por ejemplo
-router.post("/orders", authControllers.verifyToken ,createOrder);
+router.post("/orders", authControllers.verifyToken, createOrder);
 router.put("/orders/:id", updateOrder);
 router.delete("/orders/:id", deleteOrder);
 

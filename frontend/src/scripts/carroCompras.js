@@ -18,6 +18,7 @@ const mockedCarroEjemplo = [
 
 const container = document.getElementById("cart-list");
 const resumeContainer = document.getElementById("items-list");
+import { crearOrdenAndDetails } from "./orders";
 
 const validateCarroOrCreateon = () => {
   let carroCompras = [];
@@ -130,11 +131,16 @@ export function mostrarCarro() {
       resumeContainer.appendChild(listItem);
     });
     const divBotones = document.createElement("div");
-    divBotones.innerHTML = ` <button>Confirmar compra</button>
+    divBotones.innerHTML = ` <button id="confirm-button">Confirmar compra</button>
                 <button id="reset-cart">Limpiar carro</button>`;
     resumeContainer.appendChild(divBotones);
     document.getElementById("reset-cart").addEventListener("click", () => {
       return limpiarCarro();
+    });
+    //agrego el evento para disparar compra al btn con id id="confirm-button"
+    document.getElementById("confirm-button").addEventListener("click", () => {
+      //uso la funcion importada desde orders.js
+      crearOrdenAndDetails();
     });
   } catch (error) {
     console.error("Error al obtener productos:", error);
@@ -200,7 +206,7 @@ const eliminarProducto = (idProducto) => {
 };
 
 // Función para limpiar el carro de compras en localStorage
-function limpiarCarro() {
+export function limpiarCarro() {
   let carroDeCompras = [];
   localStorage.setItem("carroDeCompras", JSON.stringify(carroDeCompras));
   manageItemsInCartValue();
