@@ -17,12 +17,12 @@ function authenticateUser(req, res, next) {
     return res.status(400).json({ message: "Se requieren email y contraseña" });
   }
 
-   //validar que el email tenga la estructura de un email ej: abc@dominio.com
-   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //validar que el email tenga la estructura de un email ej: abc@dominio.com
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-   if (!email.match(emailRegex)) {
-     return res.status(500).send({ message: "Eso no parece un email" });
-   }
+  if (!email.match(emailRegex)) {
+    return res.status(500).send({ message: "Eso no parece un email" });
+  }
 
   const sql = "SELECT * FROM users WHERE email = ?";
   Users.query(sql, [email], (err, results) => {
@@ -34,7 +34,7 @@ function authenticateUser(req, res, next) {
     if (results.length === 0) {
       return res
         .status(401)
-        .json({ message: "Email o contraseña incorrectos" });
+        .json({ message: " Email o contraseña incorrectos" });
     }
     //Si existe el usuario...
     const user = results[0];
@@ -49,7 +49,7 @@ function authenticateUser(req, res, next) {
       if (!bcryptResult) {
         return res
           .status(401)
-          .json({ message: "Email o contraseña incorrectos" });
+          .json({ message: " Email o contraseña incorrectos" });
       }
 
       // Si las credenciales son válidas, generamos un token JWT
@@ -70,33 +70,37 @@ function authenticateUser(req, res, next) {
 }
 
 // Middleware para verificar el token JWT
-const verifyToken=(req, res, next)=> {
-    // desd eel front debe agregar al fetch el header "Authorization: token ", el token que fué enviado al loguearce
-    const authHeader = req.headers['authorization'];
-    //si no viene el encabezado o header
-    if (!authHeader) {
-      return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
-    }
-  
-    // El encabezado de autorización debe tener la estructura "Bearer token", es es un tipo de auth, hay muchos mas
-    const token = authHeader.split(' ')[1];
-    //si no viene el token
-    if (!token) {
-      return res.status(401).json({ message: "Acceso no autorizado, token no proporcionado" });
-    }
-  console.log(token)
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) {
-        console.error("Error al verificar el token JWT:", err);
-        return res.status(401).json({ message: "Token inválido o expirado" });
-      }
-  
-     //si el token es valido se continua con el siguiente medoto del router, por ejemplo post order
-      next(); // Llama a la siguiente función de middleware
-
-      //no apliqué los cambios a la ruta de producst 
-    });
+const verifyToken = (req, res, next) => {
+  // desd eel front debe agregar al fetch el header "Authorization: token ", el token que fué enviado al loguearce
+  const authHeader = req.headers["authorization"];
+  //si no viene el encabezado o header
+  if (!authHeader) {
+    return res
+      .status(401)
+      .json({ message: "Acceso no autorizado, token no proporcionado" });
   }
+
+  // El encabezado de autorización debe tener la estructura "Bearer token", es es un tipo de auth, hay muchos mas
+  const token = authHeader.split(" ")[1];
+  //si no viene el token
+  if (!token) {
+    return res
+      .status(401)
+      .json({ message: "Acceso no autorizado, token no proporcionado" });
+  }
+  //console.log(token);
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.error("Error al verificar el token JWT:", err);
+      return res.status(401).json({ message: "Token inválido o expirado" });
+    }
+
+    //si el token es valido se continua con el siguiente medoto del router, por ejemplo post order
+    next(); // Llama a la siguiente función de middleware
+
+    //no apliqué los cambios a la ruta de producst
+  });
+};
 module.exports = {
   authenticateUser,
   verifyToken,

@@ -6,11 +6,19 @@ const {
   createOrderDetail,
   updateOrderDetail,
   deleteOrderDetail,
+  createMultipleOrdersDetails,
 } = require("../controllers/orderDetail-controller");
+
+const authControllers = require("../middlewares/authHandler");
 
 router.get("/order-details", getOrderDetails);
 router.get("/order-details/:id", getOrderDetailById);
-router.post("/order-details", createOrderDetail);
+router.post("/order-details", authControllers.verifyToken, createOrderDetail);
+router.post(
+  "/order-details-multiple",
+  authControllers.verifyToken,
+  createMultipleOrdersDetails
+);
 router.put("/order-details/:id", updateOrderDetail);
 router.delete("/order-details/:id", deleteOrderDetail);
 

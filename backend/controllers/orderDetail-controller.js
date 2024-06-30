@@ -64,10 +64,51 @@ const deleteOrderDetail = async (req, res) => {
   });
 };
 
+const createMultipleOrdersDetails = (req, res) => {
+  const newOrderDetails = req.body; // Esperamos recibir un arreglo de detalles de orden en el cuerpo de la solicitud
+
+  // Verificamos que se haya enviado un arreglo de detalles de orden
+  if (!Array.isArray(newOrderDetails) || newOrderDetails.length === 0) {
+    return res
+      .status(400)
+      .json({ error: "Se esperaba un arreglo de detalles de orden" });
+  }
+
+  // Consulta SQL para insertar los detalles de orden
+  const sqlQuery =
+    "INSERT INTO order_detail (createdAt, id_product, quantity, price, id_order) VALUES ?";
+
+  // Construimos los valores a insertar como un arreglo de arreglos (cada subarreglo representa los valores de un detalle de orden)
+  const values = newOrderDetails.map((detail) => [
+    detail.createdAt,
+    detail.id_product,
+    detail.quantity,
+    detail.price,
+    detail.id_order,
+  ]);
+
+  // Ejecutamos la consulta SQL
+  connection.query(sqlQuery, [values], (error, result) => {
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    // Devolvemos una respuesta con los IDs de los detalles de orden insertados y los datos de los detalles insertados
+    const insertedIds = result.insertId;
+    const insertedDetails = newOrderDetails.map((detail, index) => ({
+      id: insertedIds + index, // Suponiendo que los IDs autoincrementales comienzan desde insertedIds
+      ...detail,
+    }));
+
+    res.status(201).json(insertedDetails);
+  });
+};
+
 module.exports = {
   getOrderDetails,
   getOrderDetailById,
   createOrderDetail,
   updateOrderDetail,
   deleteOrderDetail,
+  createMultipleOrdersDetails
 };

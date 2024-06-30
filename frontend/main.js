@@ -1,3 +1,74 @@
+import { manageItemsInCartValue } from "./src/scripts/carroCompras";
+
+// modal functionality login and register
+document.addEventListener("DOMContentLoaded", function () {
+  var loginModal = document.querySelector(".loginModal");
+  var loginBtns = document.querySelectorAll(".user-btn");
+  var loginCloseBtn = document.querySelector(".loginModal .close");
+
+  loginBtns.forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (loginModal) {
+        loginModal.style.display = "flex";
+      }
+    });
+  });
+
+  if (loginCloseBtn) {
+    loginCloseBtn.addEventListener("click", function () {
+      if (loginModal) {
+        loginModal.style.display = "none";
+      }
+    });
+  }
+
+  window.addEventListener("click", function (event) {
+    if (event.target === loginModal) {
+      loginModal.style.display = "none";
+    }
+  });
+
+  var registerModal = document.querySelector(".registerModal");
+  var registerLink = document.querySelector(".register-link");
+  var backToLoginLink = document.querySelector(".back-login-link");
+  var registerCloseBtns = document.querySelectorAll(".registerModal .close");
+
+  if (registerLink && registerModal) {
+    registerLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (loginModal) {
+        loginModal.style.display = "none";
+      }
+      registerModal.style.display = "flex";
+    });
+  }
+
+  if (backToLoginLink) {
+    backToLoginLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      registerModal.style.display = "none";
+      if (loginModal) {
+        loginModal.style.display = "flex";
+      }
+    });
+  }
+
+  registerCloseBtns.forEach(function (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      if (registerModal) {
+        registerModal.style.display = "none";
+      }
+    });
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === registerModal) {
+      registerModal.style.display = "none";
+    }
+  });
+});
+
 // billboard section
 let index = 0;
 const images = document.querySelectorAll(".billboard-home-img");
@@ -115,26 +186,5 @@ carousels.forEach((carouselContainer) => {
   showCards();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  var modal = document.getElementById("loginModal");
 
-  var btn = document.getElementById("user-btn");
-  btn.style.display = "inline-block";
-
-  var span = document.getElementsByClassName("close")[0];
-
-  btn.onclick = function (event) {
-    event.preventDefault();
-    modal.style.display = "flex";
-  };
-
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-});
+manageItemsInCartValue()//lo puse aca porque este script se importa globalmente en todos las vistas, actualiza el icono del carrito
