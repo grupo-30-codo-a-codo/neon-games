@@ -3,13 +3,24 @@ hr {
   border: 1px solid var(--azul-electrico);
 }
 
-h1,h2,h3,h4,h5,h6, a, p, li, label{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+li,
+label {
   color: var(--blanco);
 }
 
 /*! Dashboard styles */
 @media screen and (min-width: 1024px) {
-  h1, h2, h3{
+  h1,
+  h2,
+  h3 {
     margin: 1.5rem 2rem;
   }
 
@@ -18,6 +29,31 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     flex-direction: column;
     align-items: stretch;
     justify-content: space-evenly;
+  }
+
+  #search-bar{
+    width: 100%;
+
+  }
+  
+  #search-form{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0 4rem;
+  }
+
+  #search-form input{
+    width: 100%;
+    font-family: "Open Sans", sans-serif, system-ui;
+  }
+  
+  #search-form input, #search-form button{
+    font-size: 1rem;
+    border-radius: .5rem;
+    border: 1px solid transparent;
+    padding: 1rem;
   }
 
   #dashboard-form {
@@ -37,6 +73,13 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     border: 1px solid transparent;
   }
 
+  #dashboard-form #input-category {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+  }
+
   #dashboard-form div {
     margin: 1rem;
     display: flex;
@@ -49,38 +92,38 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
   #dashboard-form div button {
     padding: 1rem;
     border-radius: 0.5rem;
-  }
-
-  /*! Apply button */
-  #dashboard-form div button:first-of-type {
     font-size: 1rem;
     cursor: pointer;
     border: 1px solid transparent;
     box-shadow: 0 0 0 transparent;
     transition: box-shadow 0.5s;
-    background-color: var(--azul-electrico);
     font-family: "Open Sans", sans-serif, system-ui;
     font-weight: 500;
   }
 
-  #dashboard-form div button:first-of-type:hover {
+  /*! Apply button */
+  #dashboard-form #submit-button {
+    background-color: var(--azul-electrico);
+  }
+  #dashboard-form #submit-button:hover {
     box-shadow: 0 0 0.5rem var(--azul-electrico);
   }
 
   /*! Clean button */
-  #dashboard-form div button:last-of-type {
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid transparent;
-    box-shadow: 0 0 0 transparent;
-    transition: box-shadow 0.5s;
+  #dashboard-form #clean-button {
     background-color: var(--rojo);
-    font-family: "Open Sans", sans-serif, system-ui;
-    font-weight: 500;
+  }
+  #dashboard-form #clean-button:hover {
+    box-shadow: 0 0 0.5rem var(--rojo);
   }
 
-  #dashboard-form div button:last-of-type:hover {
-    box-shadow: 0 0 0.5rem var(--rojo);
+  /*! Check details button */
+
+  #dashboard-form #check-details {
+    background-color: var(--morado-oscuro);
+  }
+  #dashboard-form #check-details:hover {
+    box-shadow: 0 0 0.5rem var(--morado-oscuro);
   }
 
   /*! Dashboard data container */
@@ -165,7 +208,7 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
   /*! Dashboard resume */
   #dashboard-resume {
     width: 35%;
-    height: 420px;
+    height: 450px;
     border: 1px solid var(--blanco);
     border-radius: 0.5rem;
   }
@@ -190,7 +233,43 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     margin: 1rem 0;
+  }
+
+  #product-details #fast-access-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0 1rem;
+  }
+
+  #product-details #fast-access-buttons button {
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow 0.5s;
+    font-family: "Open Sans", sans-serif, system-ui;
+    font-weight: 500;
+  }
+
+  #product-details #fast-access-buttons button:first-of-type {
+    background-color: var(--rosa-intenso);
+  }
+  #product-details #fast-access-buttons button:first-of-type:hover {
+    box-shadow: 0 0 0.5rem var(--rosa-intenso);
+  }
+
+  #product-details #fast-access-buttons button:last-of-type {
+    background-color: var(--rojo);
+  }
+  #product-details #fast-access-buttons button:last-of-type:hover {
+    box-shadow: 0 0 0.5rem var(--rojo);
   }
 
   .search-button,
@@ -204,39 +283,64 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     font-weight: 500;
     font-size: 1rem;
     box-shadow: 0 0 0 transparent;
-    transition: box-shadow .5s;
+    transition: box-shadow 0.5s;
   }
 
-  .search-button{
+  .search-button {
     background-color: var(--azul-electrico);
   }
-  .edit-button{
+  .edit-button {
     background-color: var(--rosa-intenso);
   }
-  .delete-button{
+  .delete-button {
     background-color: var(--rojo);
   }
 
   .search-button:hover {
-    box-shadow: 0 0 .5rem var(--azul-electrico);
+    box-shadow: 0 0 0.5rem var(--azul-electrico);
   }
 
   .edit-button:hover {
-    box-shadow: 0 0 .5rem var(--rosa-intenso);
+    box-shadow: 0 0 0.5rem var(--rosa-intenso);
   }
   .delete-button:hover {
-    box-shadow: 0 0 .5rem var(--rojo);
+    box-shadow: 0 0 0.5rem var(--rojo);
   }
 }
 
 /*! Responsive ---> 1024px */
 @media screen and (max-width: 1024px) {
-
-  h1,h2,h3{
+  h1,
+  h2,
+  h3 {
     margin: 1rem 2rem;
   }
 
-  #dashboard-content{
+  #search-bar{
+    width: 100%;
+  }
+  
+  #search-form{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0 4rem;
+  }
+
+  #search-form input{
+    width: 100%;
+    font-family: "Open Sans", sans-serif, system-ui;
+  }
+  
+  #search-form input, #search-form button{
+    font-size: 1rem;
+    border-radius: .5rem;
+    border: 1px solid transparent;
+    padding: 1rem;
+  }
+
+  #dashboard-content {
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
@@ -245,9 +349,9 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     margin: 2rem;
   }
 
-  #dashboard-management{
+  #dashboard-management {
     border: 1px solid var(--blanco);
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     width: 100%;
   }
 
@@ -315,7 +419,7 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
   /*! Dashboard resume */
   #dashboard-resume {
     width: 100%;
-    height: 320px;
+    height: 400px;
     border: 1px solid var(--blanco);
     border-radius: 0.5rem;
     margin-top: 2rem;
@@ -344,6 +448,43 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     margin: 1rem 0;
   }
 
+  #product-details #fast-access-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0 1rem;
+  }
+
+  #product-details #fast-access-buttons button {
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow 0.5s;
+    font-family: "Open Sans", sans-serif, system-ui;
+    font-weight: 500;
+  }
+
+  #product-details #fast-access-buttons button:first-of-type {
+    background-color: var(--rosa-intenso);
+  }
+
+  #product-details #fast-access-buttons button:first-of-type:hover {
+    box-shadow: 0 0 0.5rem var(--rosa-intenso);
+  }
+
+  #product-details #fast-access-buttons button:last-of-type {
+    background-color: var(--rojo);
+  }
+
+  #product-details #fast-access-buttons button:last-of-type:hover {
+    box-shadow: 0 0 0.5rem var(--rojo);
+  }
+
   .search-button,
   .edit-button,
   .delete-button {
@@ -355,28 +496,28 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     font-weight: 500;
     font-size: 1rem;
     box-shadow: 0 0 0 transparent;
-    transition: box-shadow .5s;
+    transition: box-shadow 0.5s;
   }
 
-  .search-button{
+  .search-button {
     background-color: var(--azul-electrico);
   }
-  .edit-button{
+  .edit-button {
     background-color: var(--rosa-intenso);
   }
-  .delete-button{
+  .delete-button {
     background-color: var(--rojo);
   }
 
   .search-button:hover {
-    box-shadow: 0 0 .5rem var(--azul-electrico);
+    box-shadow: 0 0 0.5rem var(--azul-electrico);
   }
 
   .edit-button:hover {
-    box-shadow: 0 0 .5rem var(--rosa-intenso);
+    box-shadow: 0 0 0.5rem var(--rosa-intenso);
   }
   .delete-button:hover {
-    box-shadow: 0 0 .5rem var(--rojo);
+    box-shadow: 0 0 0.5rem var(--rojo);
   }
 
   #dashboard-form {
@@ -396,6 +537,13 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     border: 1px solid transparent;
   }
 
+  #dashboard-form #input-category {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+  }
+
   #dashboard-form div {
     margin: 1rem;
     display: flex;
@@ -408,85 +556,93 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
   #dashboard-form div button {
     padding: 1rem;
     border-radius: 0.5rem;
-  }
-
-  /*! Apply button */
-  #dashboard-form div button:first-of-type {
-    /* padding: 1rem 4rem; */
     font-size: 1rem;
     cursor: pointer;
     border: 1px solid transparent;
     box-shadow: 0 0 0 transparent;
     transition: box-shadow 0.5s;
-    background-color: var(--azul-electrico);
     font-family: "Open Sans", sans-serif, system-ui;
     font-weight: 500;
   }
 
-  #dashboard-form div button:first-of-type:hover {
+  /*! Apply button */
+  #dashboard-form div #submit-button {
+    /* padding: 1rem 4rem; */
+
+    background-color: var(--azul-electrico);
+  }
+
+  #dashboard-form div #submit-button:hover {
     box-shadow: 0 0 0.5rem var(--azul-electrico);
   }
 
   /*! Clean button */
-  #dashboard-form div button:last-of-type {
+  #dashboard-form div #clean-button {
     /* padding: 1rem 4rem; */
-    font-size: 1rem;
+    /* font-size: 1rem;
     cursor: pointer;
     border: 1px solid transparent;
     box-shadow: 0 0 0 transparent;
     transition: box-shadow 0.5s;
-    background-color: var(--rojo);
     font-family: "Open Sans", sans-serif, system-ui;
-    font-weight: 500;
+    font-weight: 500; */
+    background-color: var(--rojo);
   }
 
-  #dashboard-form div button:last-of-type:hover {
+  #dashboard-form div #clean-button:hover {
     box-shadow: 0 0 0.5rem var(--rojo);
   }
 
+  /*! Check details button */
 
+  #dashboard-form #check-details {
+    background-color: var(--morado-oscuro);
+  }
 
+  #dashboard-form #check-details:hover {
+    box-shadow: 0 0 0.5rem var(--morado-oscuro);
+  }
 }
 
 /*! Responsive ---> 768px */
 @media screen and (max-width: 768px) {
-
-  h1,h2,h3{
-    margin: 1rem ;
+  h1,
+  h2,
+  h3 {
+    margin: 1rem;
   }
 
-  #dashboard-management{
+  #dashboard-management {
     width: 100%;
   }
 
-  #dashboard-resume{
+  #dashboard-resume {
     width: 100%;
     height: 380px;
   }
-  
 }
 
 /*! Responsive ---> 576px */
 @media screen and (max-width: 576px) {
-  #dashboard-content{
+  #dashboard-content {
     gap: 2rem;
     padding: 1rem;
     margin: 2rem;
   }
 
-  #products-list .product-list-item{
+  #products-list .product-list-item {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
   }
 
-  #products-list .product-list-item img{
+  #products-list .product-list-item img {
     height: 128px;
     width: 100%;
-    border-radius: .5rem .5rem 0 0;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
 
-  #products-list .product-card-details{
+  #products-list .product-card-details {
     width: 100%;
     border: 1px solid transparent;
     flex-direction: column;
@@ -494,19 +650,18 @@ h1,h2,h3,h4,h5,h6, a, p, li, label{
     justify-content: space-between;
   }
 
-  #dashboard-form div{
+  #dashboard-form div {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
     gap: 1rem;
   }
-
 }
 
 /*! Responsive ---> 480px */
 @media screen and (max-width: 480px) {
-  #dashboard-content{
+  #dashboard-content {
     margin: 1rem;
   }
 }
