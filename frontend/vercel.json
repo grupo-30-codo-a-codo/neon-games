@@ -5,14 +5,14 @@
         "src": "frontend/package.json",
         "use": "@vercel/node",
         "config": {
-          "distDir": "dist"
+          "distDir": "frontend/dist"
         }
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "front/$1"
+        "dest": "frontend/$1"
       }
     ]
   }
