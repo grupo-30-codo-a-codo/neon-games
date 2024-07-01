@@ -1,4 +1,10 @@
-import { handleSearch, renderCategories, renderProducts } from "../scripts/dashboard";
+import { baseURL } from "../configs/configs.js";
+
+import {
+  handleSearch,
+  renderCategories,
+  renderProducts,
+} from "../scripts/dashboard";
 
 const dashboardPath = location.href;
 if (dashboardPath.includes("dashboard")) {
@@ -8,7 +14,7 @@ if (dashboardPath.includes("dashboard")) {
 
 async function fetchCategories() {
   try {
-    const response = await fetch("http://localhost:3000/api/categories");
+    const response = await fetch(baseURL+"/api/categories");
     if (!response.ok) {
       throw new Error("Error en la respuesta del servidor...");
     }
@@ -21,7 +27,7 @@ async function fetchCategories() {
 
 async function fetchProducts() {
   try {
-    const response = await fetch("http://localhost:3000/api/products");
+    const response = await fetch(baseURL+"/api/products");
     if (!response.ok) {
       throw new Error("Error en la respuesta del servidor...");
     }
@@ -36,7 +42,7 @@ async function fetchProducts() {
 async function updateProduct(product) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/products/${product.id_product}`,
+      baseURL+`/api/products/${product.id_product}`,
       {
         method: "PUT",
         headers: {
@@ -60,7 +66,7 @@ async function updateProduct(product) {
 async function deleteProduct(productId) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/products/${productId}`,
+      baseURL+`/api/products/${productId}`,
       {
         method: "DELETE",
       }
@@ -79,7 +85,7 @@ async function deleteProduct(productId) {
 
 async function createNewProduct(product) {
   try {
-    const response = await fetch("http://localhost:3000/api/products", {
+    const response = await fetch(baseURL+"/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,4 +104,4 @@ async function createNewProduct(product) {
   }
 }
 
-export {fetchProducts, deleteProduct, updateProduct, createNewProduct}
+export { fetchProducts, deleteProduct, updateProduct, createNewProduct };
