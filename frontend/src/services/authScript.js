@@ -16,7 +16,8 @@ export async function loginUser(email, password) {
       const data = await response.json();
       console.log("Login exitoso.", data);
       localStorage.setItem("token", JSON.stringify(data.userData.token.token));
-      localStorage.setItem("id_user",JSON.stringify( data.userData.id_user));
+      localStorage.setItem("id_user", JSON.stringify(data.userData.id_user));
+      alert(data.message);
       return data;
     } else {
       const errorData = await response.json();
@@ -32,7 +33,7 @@ export async function loginUser(email, password) {
 
 export async function registerUser(name, email, password) {
   try {
-    const response = await fetch(apiBaseURL + "/register", {
+    const response = await fetch(apiBaseURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

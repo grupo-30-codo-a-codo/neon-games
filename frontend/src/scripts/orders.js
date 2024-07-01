@@ -19,7 +19,7 @@ localStorage.setItem("id_user", JSON.stringify(1));
 export const crearOrdenAndDetails = async () => {
   try {
     //validar
-    //que este la clave id_user en local stores y con su value, y JWT tambien
+    //que este la clave id_user en localsotage y con su value, y JWT tambien
     let id_user;
     let jwt;
     // Recuperar la cadena JSON desde localStorage

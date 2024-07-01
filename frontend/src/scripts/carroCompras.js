@@ -210,7 +210,8 @@ export function limpiarCarro() {
   let carroDeCompras = [];
   localStorage.setItem("carroDeCompras", JSON.stringify(carroDeCompras));
   manageItemsInCartValue();
-  location.reload();
+  mostrarCarro()
+ // location.reload();
 }
 
 export const manageItemsInCartValue = () => {

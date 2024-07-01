@@ -7,3 +7,5 @@
 
 # Archivos de entorno
 .env
+.vercel
+

@@ -1,5 +1,5 @@
 const Users = require("../config/dbConfig");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 /*Resumen del archivo, por si se hace largo */
 
