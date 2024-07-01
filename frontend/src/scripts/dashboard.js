@@ -2,7 +2,6 @@ import { createNewProduct, deleteProduct, fetchProducts, updateProduct } from ".
 
 // Almacenamiento global de productos
 let allProducts = [];
-// let originalSetProducts = []; ignore this code
 
 // Renderizado de categorias en form selector
 export const renderCategories = (categories) => {
@@ -143,11 +142,11 @@ const deleteProductHandler = async (productId) => {
   fetchProducts();
 };
 
-// Create product function
+// Creación de productos
 const createProduct = () => {
   const dashboardForm = document.querySelector("#dashboard-form");
 
-  // Handle form submission for creating a new product
+  // Manejo del form para creación de nuevos productos (agregar validación)
   dashboardForm.onsubmit = async (e) => {
     e.preventDefault();
 
@@ -161,7 +160,7 @@ const createProduct = () => {
 
     await createNewProduct(newProduct);
     fetchProducts();
-    clearForm(); // Clear the form after submission
+    clearForm();
   };
 };
 createProduct();
@@ -202,7 +201,7 @@ const handleSearch = () => {
 
     if (searchTerm.length === 0) {
       console.log("Restoring original products");
-      renderProducts(allProducts); // Restore original products when search input is empty
+      renderProducts(allProducts); //! Si el input está vacío se deberían renderizar todos los productos, fix acá
     } else {
       const filteredProducts = allProducts.filter((product) =>
         product.title.toLowerCase().includes(searchTerm)
