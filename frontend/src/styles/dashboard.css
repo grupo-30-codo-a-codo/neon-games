@@ -17,11 +17,25 @@ label {
 }
 
 /*! Dashboard styles */
+
 @media screen and (min-width: 1024px) {
-  h1,
-  h2,
-  h3 {
-    margin: 1.5rem 2rem;
+  h1 {
+    margin: 2rem 4rem;
+    padding: 0 2rem;
+  }
+
+  h2{
+    margin: 1rem 4rem;
+    padding: 0 2rem;
+  }
+
+  h3{
+    font-size: 1.5rem;
+    margin: 1.5rem;
+  }
+
+  h2{
+    height: 2rem;
   }
 
   #dashboard-page {
@@ -33,15 +47,23 @@ label {
 
   #search-bar{
     width: 100%;
-
   }
   
   #search-form{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: stretch;
     gap: 1rem;
     margin: 0 4rem;
+    padding: 0 2rem;
+  }
+
+  #search-form div{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 1rem 0;
   }
 
   #search-form input{
@@ -54,6 +76,21 @@ label {
     border-radius: .5rem;
     border: 1px solid transparent;
     padding: 1rem;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow .5s;
+  }
+
+  #search-form input:focus{
+    box-shadow: 0 0 1rem var(--blanco);
+  }
+
+  #search-form button{
+    cursor: pointer;
+    background-color: var(--azul-electrico);
+  }
+
+  #search-form button:hover{
+    box-shadow: 0 0 1rem var(--azul-electrico);
   }
 
   #dashboard-form {
@@ -147,7 +184,6 @@ label {
   #dashboard-management .board-title,
   #dashboard-resume .board-title {
     border-bottom: 1px solid var(--blanco);
-    margin: 1rem;
   }
 
   #products-list {
@@ -310,10 +346,20 @@ label {
 
 /*! Responsive ---> 1024px */
 @media screen and (max-width: 1024px) {
-  h1,
-  h2,
-  h3 {
+  h1 {
+    margin: 2rem 4rem;
+    padding: 0 2rem;
+  }
+
+  h2{
     margin: 1rem 2rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  h3{
+    font-size: 1.5rem;
+    margin: 1.5rem;
   }
 
   #search-bar{
@@ -322,10 +368,18 @@ label {
   
   #search-form{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: stretch;
     gap: 1rem;
     margin: 0 4rem;
+  }
+
+  #search-form div{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 1rem 0;
   }
 
   #search-form input{
@@ -338,6 +392,21 @@ label {
     border-radius: .5rem;
     border: 1px solid transparent;
     padding: 1rem;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow .5s;
+  }
+
+  #search-form input:focus{
+    box-shadow: 0 0 1rem var(--blanco);
+  }
+
+  #search-form button{
+    cursor: pointer;
+    background-color: var(--azul-electrico);
+  }
+
+  #search-form button:hover{
+    box-shadow: 0 0 1rem var(--azul-electrico);
   }
 
   #dashboard-content {
@@ -358,7 +427,6 @@ label {
   #dashboard-management .board-title,
   #dashboard-resume .board-title {
     border-bottom: 1px solid var(--blanco);
-    margin: 1rem;
   }
 
   #products-list {
@@ -578,14 +646,6 @@ label {
 
   /*! Clean button */
   #dashboard-form div #clean-button {
-    /* padding: 1rem 4rem; */
-    /* font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid transparent;
-    box-shadow: 0 0 0 transparent;
-    transition: box-shadow 0.5s;
-    font-family: "Open Sans", sans-serif, system-ui;
-    font-weight: 500; */
     background-color: var(--rojo);
   }
 
@@ -606,10 +666,20 @@ label {
 
 /*! Responsive ---> 768px */
 @media screen and (max-width: 768px) {
-  h1,
-  h2,
-  h3 {
-    margin: 1rem;
+  h1 {
+    margin: 2rem;
+    padding: 0 2rem;
+  }
+
+  h2{
+    margin: 1rem 2rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  h3{
+    font-size: 1.5rem;
+    margin: 1.5rem;
   }
 
   #dashboard-management {
@@ -618,12 +688,37 @@ label {
 
   #dashboard-resume {
     width: 100%;
-    height: 380px;
+    height: 420px;
+  }
+
+  .product-detail ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
   }
 }
 
 /*! Responsive ---> 576px */
 @media screen and (max-width: 576px) {
+  h1 {
+    margin: 2rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  h2{
+    margin: 2rem 1rem;
+    font-size: 1.5rem;
+  }
+
+  h3{
+    font-size: 1rem;
+    margin: 1.5rem;
+  }
+
   #dashboard-content {
     gap: 2rem;
     padding: 1rem;
@@ -650,6 +745,10 @@ label {
     justify-content: space-between;
   }
 
+  #dashboard-resume{
+    height: 420px;
+  }
+
   #dashboard-form div {
     display: flex;
     flex-direction: column;
@@ -661,7 +760,60 @@ label {
 
 /*! Responsive ---> 480px */
 @media screen and (max-width: 480px) {
+
+  h1 {
+    margin: 2.5rem 1rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
   #dashboard-content {
     margin: 1rem;
+  }
+
+  #search-form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 1rem 2rem;
+  }
+  
+  #dashboard-resume{
+    height: 480px;
+  }
+
+  .product-detail ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+}
+
+/*! Responsive ---> 380px */
+
+@media screen and (max-width: 380px){
+  h1 {
+    margin: 2.5rem 1rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  h2{
+    margin: 1rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  #dashboard-resume{
+    height: 500px;
+  }
+
+  #dashboard-form{
+    margin: 4rem 2rem;
   }
 }

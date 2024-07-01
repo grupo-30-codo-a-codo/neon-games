@@ -1,4 +1,8 @@
-import { updateProduct } from "../services/http";
+import { createNewProduct, deleteProduct, fetchProducts, updateProduct } from "../services/http";
+
+// Almacenamiento global de productos
+let allProducts = [];
+// let originalSetProducts = []; ignore this code
 
 // Renderizado de categorias en form selector
 export const renderCategories = (categories) => {
@@ -17,6 +21,8 @@ export const renderCategories = (categories) => {
 // Renderizado de productos
 export const renderProducts = (products) => {
   const productsList = document.querySelector("#products-list");
+  productsList.innerHTML = "";
+  allProducts = products
 
   products.forEach((product) => {
     const productItem = document.createElement("div");
@@ -46,7 +52,7 @@ export const renderProducts = (products) => {
 
     searchButton.onclick = () => renderProductDetails(product);
     editButton.onclick = () => editDetails(product);
-    deleteButton.onclick = () => deleteItem(product);
+    deleteButton.onclick = () => deleteProductHandler(product.id_product);
 
     productsList.appendChild(productItem);
   });
@@ -96,10 +102,14 @@ const renderProductDetails = (product) => {
   /* Scroll hacia form para editar productos */
   const editDetailsButton = productSpecs.querySelector("#edit-product-btn");
   editDetailsButton.onclick = () => editDetails(product);
+
+  const deleteProductButton = productSpecs.querySelector('#delete-product-btn');
+  deleteProductButton.onclick = () => deleteProductHandler(product.id_product); 
+
 };
 
 // Para renderizar detalles en formulario de edición y ejecutar petición PUT
-let editDetails = (product) => {
+const editDetails = (product) => {
   const dashboardForm = document.querySelector("#dashboard-form");
   dashboardForm.scrollIntoView({ behavior: "smooth" });
 
@@ -122,14 +132,39 @@ let editDetails = (product) => {
     };
 
     await updateProduct(updatedProduct);
+    fetchProducts();
     clearForm();
   };
 };
 
 // Eliminar un producto en particular al clickear en botón 'eliminar'
-const deleteItem = (product) => {
-  console.log(product);
+const deleteProductHandler = async (productId) => {
+  await deleteProduct(productId);
+  fetchProducts();
 };
+
+// Create product function
+const createProduct = () => {
+  const dashboardForm = document.querySelector("#dashboard-form");
+
+  // Handle form submission for creating a new product
+  dashboardForm.onsubmit = async (e) => {
+    e.preventDefault();
+
+    const newProduct = {
+      title: dashboardForm.querySelector("#input-name").value,
+      price: dashboardForm.querySelector("#input-price").value,
+      id_category: dashboardForm.querySelector("#input-category").value,
+      developer: dashboardForm.querySelector("#input-developer").value,
+      cover: dashboardForm.querySelector("#input-image").value,
+    };
+
+    await createNewProduct(newProduct);
+    fetchProducts();
+    clearForm(); // Clear the form after submission
+  };
+};
+createProduct();
 
 // Ejecutor de scroll al clickear en botones particulares
 const checkDetails = () => {
@@ -154,3 +189,38 @@ const clearFormClick = () => {
   };
 };
 clearFormClick();
+
+// Gestión de búsqueda en barra superior 
+const handleSearch = () => {
+  const searchForm = document.querySelector("#search-form");
+  const searchInput = document.querySelector("#search-game");
+
+  const performSearch = () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    console.log("Search Term:", searchTerm);
+    console.log("All Products:", allProducts);
+
+    if (searchTerm.length === 0) {
+      console.log("Restoring original products");
+      renderProducts(allProducts); // Restore original products when search input is empty
+    } else {
+      const filteredProducts = allProducts.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm)
+      );
+      console.log("Filtered Products:", filteredProducts);
+      renderProducts(filteredProducts);
+    }
+  };
+
+  searchForm.onsubmit = (e) => {
+    e.preventDefault();
+    performSearch();
+  };
+
+  searchInput.oninput = () => {
+    performSearch();
+  };
+};
+
+
+export {handleSearch, allProducts}

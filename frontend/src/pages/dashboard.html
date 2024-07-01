@@ -49,13 +49,15 @@
       <button class="returnBtn"><i class='bx bx-chevron-up'></i></button>
       <h1>¡Bienvenido/a al panel de control administrativo!</h1>
       <section>
-        <h2>Productos existentes</h2>
         <div id="search-bar">
           <form id="search-form">
-            <input type="text">
-            <button type="submit">
-              <i class="bx bx-search"></i>
-            </button>
+            <label for="search-game">Ingresá el nombre del juego que querés buscar:</label>
+            <div>
+              <input type="text" id="search-game" placeholder="Counter Strike...">
+              <button type="submit">
+                <i class="bx bx-search"></i>
+              </button>
+            </div>
           </form>
         </div>
         <article id="dashboard-content">
@@ -63,7 +65,7 @@
             <div class="board-title">
               <h3>Productos:</h3>
             </div>
-            <div id="products-list" onload="fetchData()">
+            <div id="products-list">
 
               <!-- 
               Template de html
@@ -93,7 +95,7 @@
           </div>
           <div id="dashboard-resume">
             <div class="board-title">
-              <h2>Detalles de producto</h2>
+              <h3>Detalles de producto</h2>
             </div>
             <div id="product-details">
               <h3>Seleccioná un título haciendo click en la lupa para ver sus detalles...</h3>
