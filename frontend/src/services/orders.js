@@ -25,10 +25,10 @@ export const createOrder = async (id_user, jwt) => {
     }
 
     const parsedResponse = await response.json(); // se pasa de json a objeto
-    console.log(parsedResponse);
+    console.log("Respuesta del alta de la Orden:",parsedResponse);
     return parsedResponse;
   } catch (error) {
-    console.error("Error al obtener productos:", error);
+    console.error("Error al obtener la orden:", error);
     alert(error.message);
     return error; // Puedes decidir cómo manejar el error según tus necesidades
   }
@@ -73,7 +73,7 @@ export const createOrderDetail = async (id_user, jwt, id_order, details) => {
     }
 
     const parsedResponse = await response.json(); // se pasa de json a objeto
-    console.log(parsedResponse);
+    console.log("Respuesta del alta de los detalles de la orden",parsedResponse);
     return parsedResponse;
   } catch (error) {
     console.error(error);
@@ -102,7 +102,7 @@ export const getOrderWithDetails = async (jwt, id_order) => {
       throw new Error("No se pudo obtener la orden completa");
     }
     const parsedResponse = await response.json(); // se pasa de json a objeto
-    console.log(parsedResponse);
+    console.log("Respuesta al get de la orden y sus detalles",parsedResponse);
     return parsedResponse;
   } catch (error) {
     console.log(error);
