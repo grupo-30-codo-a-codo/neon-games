@@ -49,13 +49,26 @@
       <button class="returnBtn"><i class='bx bx-chevron-up'></i></button>
       <h1>¡Bienvenido/a al panel de control administrativo!</h1>
       <section>
-        <h2>Productos existentes</h2>
+        <div id="search-bar">
+          <form id="search-form">
+            <label for="search-game">Ingresá el nombre del juego que querés buscar:</label>
+            <div>
+              <input type="text" id="search-game" placeholder="Counter Strike...">
+              <button type="submit">
+                <i class="bx bx-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
         <article id="dashboard-content">
           <div id="dashboard-management">
             <div class="board-title">
               <h3>Productos:</h3>
             </div>
             <div id="products-list">
+
+              <!-- 
+              Template de html
               <div class="product-list-item">
                 <img
                   src="../assets/games/coversSmall/sons-of-the-forest.webp"
@@ -75,56 +88,20 @@
                     </button>
                   </div>
                 </div>
-              </div>
-              <hr />
-              <div class="product-list-item">
-                <img
-                  src="../assets/games/coversSmall/valheim.webp"
-                  alt="valheim"
-                />
-                <div class="product-card-details">
-                  <h4>Valheim</h4>
-                  <div>
-                    <button class="search-button">
-                      <i class="bx bx-search"></i>
-                    </button>
-                    <button class="edit-button">
-                      <i class="bx bx-edit"></i>
-                    </button>
-                    <button class="delete-button">
-                      <i class="bx bx-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <div class="product-list-item">
-                <img
-                  src="../assets/games/coversSmall/call-of-duty_black-ops-II.webp"
-                  alt="call-of-duty_black-ops-II"
-                />
-                <div class="product-card-details">
-                  <h4>Call of Duty Black Ops II</h4>
-                  <div>
-                    <button class="search-button">
-                      <i class="bx bx-search"></i>
-                    </button>
-                    <button class="edit-button">
-                      <i class="bx bx-edit"></i>
-                    </button>
-                    <button class="delete-button">
-                      <i class="bx bx-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              </div> 
+              -->
+
             </div>
           </div>
           <div id="dashboard-resume">
             <div class="board-title">
-              <h2>Detalles de producto</h2>
+              <h3>Detalles de producto</h2>
             </div>
             <div id="product-details">
+              <h3>Seleccioná un título haciendo click en la lupa para ver sus detalles...</h3>
+
+              <!--
+              Template de html 
               <div class="product-detail">
                 <h4>Sons of the forest</h4>
                 <ul>
@@ -146,6 +123,8 @@
                   </li>
                 </ul>
               </div>
+              -->
+              
             </div>
           </div>
         </article>
@@ -176,24 +155,18 @@
           />
 
           <label for="input-category">Categoria:</label>
-          <input
-            type="text"
-            id="input-category"
-            name="category"
-            minlength="0"
-            maxlength="16"
-            placeholder="Fps, Rpg, Estrategia..."
-            required
-          />
+          <select name="categories" id="input-category">
+            <option value="" disabled selected>Seleccioná una categoría...</option>
+          </select>
 
-          <label for="input-image">Calificación:</label>
+          <label for="input-image">Empresa desarrolladora:</label>
           <input
             type="text"
-            id="input-rating"
+            id="input-developer"
             name="rating"
             minlength="0"
-            maxlength="10"
-            placeholder="Puntuación del 0 al 5..."
+            maxlength="32"
+            placeholder="Empresa desarrolladora..."
             required
           />
 
@@ -204,12 +177,13 @@
             name="image"
             minlength="0"
             maxlength="100"
-            placeholder="Ubicación de la imagen..."
+            placeholder="Enlace de la portada (https://urlejemplo.com)"
             required
           />
           <div>
             <button type="submit" id="submit-button">Aplicar</button>
-            <button id="clean-button">Limpiar</button>
+            <button type="button" id="clean-button">Limpiar</button>
+            <button type="button" id="check-details">Ver detalles</button>
           </div>
         </form>
       </section>
@@ -257,6 +231,7 @@
         </div>
       </div>
     </footer>
+    <script type="module" src="../services/http.js"></script>
     <script src="../../main.js" type="module"></script>
     <script src="../scripts/navbar.js"></script>
   </body>
