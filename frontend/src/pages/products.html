@@ -1,123 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Games products" />
-    <link rel="icon" type="image/svg+xml" href="../assets/logos/ng-1.svg" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <title>Neon Games - Productos</title>
-    <link rel="stylesheet" href="../styles/globals.css" />
-    <link rel="stylesheet" href="../styles/products.css" />
-  </head>
 
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="container-navigation">
-          <div class="brand">
-            <img src="../assets/logos/ng-1.svg" alt="neon-games" />
-          </div>
-          <div class="navbar-links" id="navbar-links">
-            <a href="../../index.html">Inicio</a>
-            <a href="./products.html">Productos</a>
-            <a href="./about.html">Nosotros</a>
-            <a href="./contact.html">Contacto</a>
-            <a href="./dashboard.html">Dashboard</a>
-          </div>
-          <div class="search-cart">
-            <div>
-              <a id="cart-btn" href="./cart.html" style="position: relative"
-                ><i class="bx bx-cart-alt search-cart-btn"></i>
-                <i id="items-in-cart"></i
-              ></a>
-            </div>
-            <div id="search-btn">
-              <i class="bx bx-search search-cart-btn"></i>
-            </div>
-          </div>
-          <div class="hamburger-menu" id="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-        </div>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Games products" />
+  <link rel="icon" type="image/svg+xml"
+    href="https://res.cloudinary.com/dtrs7cus2/image/upload/v1719851460/ng-1_ofeaaz.svg" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Neon Games - Productos</title>
+  <link rel="stylesheet" href="../styles/globals.css" />
+  <link rel="stylesheet" href="../styles/products.css" />
+</head>
 
-    <main>
-      <button class="returnBtn"><i class="bx bx-chevron-up"></i></button>
-      <section id="search-filters-products">
-        <h2 class="titles-sections-products">Buscar productos</h2>
-        <div class="search-filter">
-          <div style="position: relative; width: fit-content">
-            <input
-              type="text"
-              id="search-input"
-              placeholder="Buscar..."
-              style="width: 350px"
-            />
-            <!--  <button id="search-button" style="position: absolute; right: 0px;top: 0px;">¡Vamos!</button> -->
-            <button id="reset-button">x</button>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container-navigation">
+        <div class="brand">
+          <img src="https://res.cloudinary.com/dtrs7cus2/image/upload/v1719851460/ng-1_ofeaaz.svg" alt="neon-games" />
+        </div>
+        <div class="navbar-links" id="navbar-links">
+          <a href="../../index.html">Inicio</a>
+          <a href="./products.html">Productos</a>
+          <a href="./about.html">Nosotros</a>
+          <a href="./contact.html">Contacto</a>
+          <a href="./dashboard.html">Dashboard</a>
+        </div>
+        <div class="search-cart">
+          <div>
+            <a id="cart-btn" href="./cart.html" style="position: relative"><i
+                class="bx bx-cart-alt search-cart-btn"></i>
+              <i id="items-in-cart"></i></a>
+          </div>
+          <div id="search-btn">
+            <i class="bx bx-search search-cart-btn"></i>
           </div>
         </div>
-      </section>
-      <section id="products-container">
-        <div id="grid-container-cards" class="grid-container-cards"></div>
-      </section>
-    </main>
-    <!-- footer section -->
-    <footer>
-      <div class="container-footer">
-        <div class="brand-footer">
-          <div class="brand">
-            <img src="../assets/logos/ng-1.svg" alt="logo" />
-          </div>
-          <h3>Neon Games</h3>
-        </div>
-        <div class="container-sections">
-          <div class="content">
-            <div class="social-footer">
-              <a href="https://x.com/" target="_blank">
-                <i class="bx bxl-twitter links-social-footer"></i>
-              </a>
-              <a href="https://www.facebook.com/" target="_blank"
-                ><i class="bx bxl-facebook links-social-footer"></i
-              ></a>
-              <a href="https://www.linkedin.com/" target="_blank"
-                ><i class="bx bxl-linkedin links-social-footer"></i
-              ></a>
-              <a href="https://www.instagram.com/" target="_blank"
-                ><i class="bx bxl-instagram-alt links-social-footer"></i
-              ></a>
-            </div>
-            <p class="direction-footer">
-              Av. Innovación 1234, Piso 5 Barrio Tecnológico Ciudad Futuro, CP
-              56789 República Digital
-            </p>
-          </div>
-          <div class="contact-footer">
-            <a class="website" href="">neongames.com.ar</a>
-            <p>©️2023-2024</p>
-            <p>📱 12312408714</p>
-          </div>
-        </div>
-        <div class="container-links-footer">
-          <a class="links-footer" href="../pages/about.html">Quienes somos</a>
-          <a class="links-footer" href="./contact.html">Comunidad</a>
-          <a class="links-footer" href="./contact.html">Soporte</a>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
         </div>
       </div>
-    </footer>
-    <script src="../scripts/navbar.js" type="module"></script>
+    </nav>
+  </header>
 
-    <!-- Importar el archivo de servicios -->
-    <script src="../services/products.js" type="module"></script>
-    <!-- levanta los metodo... asi estan listos para el siguiente script, el type es module para que soporte los imports -->
-    <!-- Tu script personalizado -->
-    <script src="../scripts/products.js" type="module"></script>
-  </body>
+  <main>
+    <button class="returnBtn"><i class="bx bx-chevron-up"></i></button>
+    <section id="search-filters-products">
+      <h2 class="titles-sections-products">Buscar productos</h2>
+      <div class="search-filter">
+        <div style="position: relative; width: fit-content">
+          <input type="text" id="search-input" placeholder="Buscar..." style="width: 350px" />
+          <!--  <button id="search-button" style="position: absolute; right: 0px;top: 0px;">¡Vamos!</button> -->
+          <button id="reset-button">x</button>
+        </div>
+      </div>
+    </section>
+    <section id="products-container">
+      <div id="grid-container-cards" class="grid-container-cards"></div>
+    </section>
+  </main>
+  <!-- footer section -->
+  <footer>
+    <div class="container-footer">
+      <div class="brand-footer">
+        <div class="brand">
+          <img src="https://res.cloudinary.com/dtrs7cus2/image/upload/v1719851460/ng-1_ofeaaz.svg" alt="logo" />
+        </div>
+        <h3>Neon Games</h3>
+      </div>
+      <div class="container-sections">
+        <div class="content">
+          <div class="social-footer">
+            <a href="https://x.com/" target="_blank">
+              <i class="bx bxl-twitter links-social-footer"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="bx bxl-facebook links-social-footer"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="bx bxl-linkedin links-social-footer"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i
+                class="bx bxl-instagram-alt links-social-footer"></i></a>
+          </div>
+          <p class="direction-footer">
+            Av. Innovación 1234, Piso 5 Barrio Tecnológico Ciudad Futuro, CP
+            56789 República Digital
+          </p>
+        </div>
+        <div class="contact-footer">
+          <a class="website" href="">neongames.com.ar</a>
+          <p>©️2023-2024</p>
+          <p>📱 12312408714</p>
+        </div>
+      </div>
+      <div class="container-links-footer">
+        <a class="links-footer" href="../pages/about.html">Quienes somos</a>
+        <a class="links-footer" href="./contact.html">Comunidad</a>
+        <a class="links-footer" href="./contact.html">Soporte</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../scripts/navbar.js" type="module"></script>
+
+  <!-- Importar el archivo de servicios -->
+  <script src="../services/products.js" type="module"></script>
+  <!-- levanta los metodo... asi estan listos para el siguiente script, el type es module para que soporte los imports -->
+  <!-- Tu script personalizado -->
+  <script src="../scripts/products.js" type="module"></script>
+</body>
+
 </html>
