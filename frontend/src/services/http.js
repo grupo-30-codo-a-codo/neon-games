@@ -9,12 +9,14 @@ import {
 const dashboardPath = location.href;
 if (dashboardPath.includes("dashboard")) {
   fetchProducts();
-  fetchCategories();
+  setTimeout(() => {
+    fetchCategories();
+  }, 1000);
 }
 
 async function fetchCategories() {
   try {
-    const response = await fetch(baseURL+"/api/categories");
+    const response = await fetch(baseURL + "/api/categories");
     if (!response.ok) {
       throw new Error("Error en la respuesta del servidor...");
     }
@@ -27,7 +29,7 @@ async function fetchCategories() {
 
 async function fetchProducts() {
   try {
-    const response = await fetch(baseURL+"/api/products");
+    const response = await fetch(baseURL + "/api/products");
     if (!response.ok) {
       throw new Error("Error en la respuesta del servidor...");
     }
@@ -42,7 +44,7 @@ async function fetchProducts() {
 async function updateProduct(product) {
   try {
     const response = await fetch(
-      baseURL+`/api/products/${product.id_product}`,
+      baseURL + `/api/products/${product.id_product}`,
       {
         method: "PUT",
         headers: {
@@ -65,12 +67,9 @@ async function updateProduct(product) {
 
 async function deleteProduct(productId) {
   try {
-    const response = await fetch(
-      baseURL+`/api/products/${productId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(baseURL + `/api/products/${productId}`, {
+      method: "DELETE",
+    });
 
     if (!response.ok) {
       throw new Error("Error al eliminar el producto...");
@@ -85,7 +84,7 @@ async function deleteProduct(productId) {
 
 async function createNewProduct(product) {
   try {
-    const response = await fetch(baseURL+"/api/products", {
+    const response = await fetch(baseURL + "/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
