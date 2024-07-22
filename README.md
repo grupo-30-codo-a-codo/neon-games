@@ -8,9 +8,9 @@ Proyecto colaborativo desarrollado en equipo durante la capacitación de Codo a 
 
 --------------------------------------------------------------------------------
 
-Repositorio Frontend, primera parte del curso: https://github.com/imsamudev01/neongames
+Repositorio Frontend, primera parte del curso: https://github.com/imsamudev/neongames
 <br>
-Deploy Primera parte (estático sólo Frontend): https://imsamudev01.github.io/neongames
+Deploy Primera parte (estático sólo Frontend): https://imsamudev.github.io/neongames
 
 --------------------------------------------------------------------------------
 
